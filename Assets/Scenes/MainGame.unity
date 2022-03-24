@@ -558,7 +558,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408322704}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aad1d0d1a80b6e14e907d6352c84bb53, type: 3}
   m_Name: 
@@ -632,7 +632,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1455869866}
+  playerTransform: {fileID: 408322707}
+  protectShield: {fileID: 815577694}
   outOfProtectShield: 0
+  outBuffer: 0.8
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,15 +861,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5281f5121f5bd419763400ca15ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPoint: {fileID: 1043205432}
-  shapePoints: 300
+  arenaCenter: {fileID: 1043205432}
   shapeRadius: 5
+  shapePoints: 300
   minRadius: 3
   maxRadius: 10
   generateSpeed: 0.03
   offsetX: 0
   offsetY: 0
-  gameController: {fileID: 480171841}
+  protectShieldCenter: {x: 0, y: 0}
+  scoreSystem: {fileID: 480171841}
 --- !u!68 &815577695
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1312,7 +1316,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212112077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a0d526180109fa43831a51291ed148a, type: 3}
   m_Name: 

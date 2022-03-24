@@ -1,22 +1,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProtectShield : MonoBehaviour
+public class ProtectShieldController : MonoBehaviour
 {
     private LineRenderer shapeRenderer;
     private EdgeCollider2D shapeCollider;
 
-    [SerializeField] private Transform centerPoint;
+    [SerializeField] private Transform arenaCenter;
 
+    [SerializeField] public float shapeRadius;
     [SerializeField] private int shapePoints;
-    [SerializeField] private float shapeRadius;
     [SerializeField] private float minRadius, maxRadius, generateSpeed;
     [SerializeField] private float offsetX, offsetY;
     
     // This determines shape grow (true) or shrink (false)
     private bool generateVector;
 
-    [SerializeField] GameController gameController;
+    // Center of the Protect Shield
+    public Vector2 protectShieldCenter;
+
+    [SerializeField] ScoreSystem scoreSystem;
 
     private void Awake()
     {
@@ -27,16 +30,23 @@ public class ProtectShield : MonoBehaviour
     private void Start()
     {
         generateVector = true;
-        InvokeRepeating("renderShape", .5f, .01f);
+        InvokeRepeating("RenderShape", .5f, .01f);
+
+        shapeRadius = 5f;
     }
 
-    private void renderShape()
+    private void Update()
     {
-        generateRadius(minRadius, maxRadius, generateSpeed);
-        generateShapeAndCollision(shapePoints, shapeRadius);
+        protectShieldCenter = new Vector2(arenaCenter.position.x + offsetX, arenaCenter.position.y + offsetY);
     }
 
-    private void generateShapeAndCollision(int steps, float radius)
+    private void RenderShape()
+    {
+        //shapeRadius = GenerateRadius(minRadius, maxRadius, generateSpeed);
+        GenerateShapeAndCollision(shapePoints, shapeRadius);
+    }
+
+    private void GenerateShapeAndCollision(int steps, float radius)
     {
         shapeRenderer.positionCount = steps;
         List<Vector2> points = new List<Vector2>();
@@ -70,8 +80,8 @@ public class ProtectShield : MonoBehaviour
 
             // Must separately bound the shape to Center Point's position
             // Because LineRenderer's positions are independent of parent object's position
-            x += centerPoint.position.x;
-            y += centerPoint.position.y;
+            x += arenaCenter.position.x;
+            y += arenaCenter.position.y;
 
             // Now translate the current position to the LineRenderer
             Vector3 currentPosition = new Vector3(x, y, 0f);
@@ -85,23 +95,21 @@ public class ProtectShield : MonoBehaviour
         shapeCollider.SetPoints(points);
     }
 
-    private void generateRadius(float minR, float maxR, float speed)
+    private float GenerateRadius(float minR, float maxR, float speed)
     {
+        float _radius = shapeRadius;
+
         if (generateVector)
         {
-            shapeRadius += speed;
-            if (shapeRadius >= maxR) { generateVector = false; }
+            _radius += speed;
+            if (_radius >= maxR) { generateVector = false; }
+            return _radius;
         }
         else
         {
-            shapeRadius -= speed;
-            if (shapeRadius <= minR) { generateVector = true; }
+            _radius -= speed;
+            if (_radius <= minR) { generateVector = true; }
+            return _radius;
         }
-    }
-
-    // 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-       
     }
 }
