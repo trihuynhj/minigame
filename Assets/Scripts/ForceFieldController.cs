@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ForceFieldMovement : MonoBehaviour
+public class ForceFieldController : MonoBehaviour
 {
     [SerializeField] private Transform centerPoint;
 
