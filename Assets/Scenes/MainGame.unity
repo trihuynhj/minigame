@@ -2161,6 +2161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cce7efd0855c554db17dad4d869e5c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameArena: {fileID: 336509571}
   entityIsEnemy: 0
   entityType: []
   entitySize: 0
@@ -2529,17 +2530,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Entity
       objectReference: {fileID: 0}
+    - target: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6433950135888429337, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6433950135888429337, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.87
+      value: 13.7
       objectReference: {fileID: 0}
     - target: {fileID: 6433950135888429337, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.17
+      value: 13.4
       objectReference: {fileID: 0}
     - target: {fileID: 6433950135888429337, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
       propertyPath: m_LocalPosition.z

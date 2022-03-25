@@ -30,6 +30,6 @@ public class EntityMovement : MonoBehaviour
     private void LinearMovement()
     {
         Vector3 destination = arenaCenter.position - transform.position;
-        rb.velocity = destination * speed;
+        rb.velocity = destination.normalized * speed;
     }
 }

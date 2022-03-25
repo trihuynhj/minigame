@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EntityController : MonoBehaviour
 {
+    [SerializeField] private Transform gameArena;
+
     private int entityNumber;
 
     public bool entityIsEnemy;
@@ -33,7 +35,7 @@ public class EntityController : MonoBehaviour
     private void SpawnEntity()
     {
         GameObject e = Instantiate(entityPrefab, transform);
-        e.transform.position = new Vector2(Random.Range(-20f, 20f), Random.Range(-20f, 20f));
+        e.transform.position = new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0f) + gameArena.position;
 
         EntityMovement entityMovement = e.GetComponent<EntityMovement>();
         entityMovement.arenaCenter = transform;
