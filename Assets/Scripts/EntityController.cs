@@ -8,11 +8,11 @@ public class EntityController : MonoBehaviour
 
     private int entityNumber;
 
-    public bool entityIsEnemy;
-    public string[] entityType;
-    public float entitySize;
-    public float entitySpeed;
-    public float entitySpawnPosition;
+    private bool entityIsEnemy;
+    private string[] entityType;
+    private float entitySize;
+    private float entitySpeed;
+    private float entitySpawnPosition;
 
     [SerializeField] private GameObject entityPrefab;
     private float respawnTime;
@@ -35,6 +35,7 @@ public class EntityController : MonoBehaviour
     private void SpawnEntity()
     {
         GameObject e = Instantiate(entityPrefab, transform);
+        // Must fix entity's position to Game Arena's center point (using GameArea's original position)
         e.transform.position = new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0f) + gameArena.position;
 
         EntityMovement entityMovement = e.GetComponent<EntityMovement>();

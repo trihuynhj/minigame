@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ForceFieldController : MonoBehaviour
 {
-    [SerializeField] private Transform centerPoint;
+    [SerializeField] private Transform coreCenter;
 
     [SerializeField] private Vector3 destination;
     [SerializeField] private float circleRadius;
@@ -46,8 +46,8 @@ public class ForceFieldController : MonoBehaviour
     private IEnumerator LinearMovement(float _radius, float _speed)
     {
         // Must account for the offset of the Center Point
-        float deltaX = transform.position.x - centerPoint.position.x;
-        float deltaY = transform.position.y - centerPoint.position.y;
+        float deltaX = transform.position.x - coreCenter.position.x;
+        float deltaY = transform.position.y - coreCenter.position.y;
 
         // Calculate the current position in radian degree
         float currentRad = Mathf.Atan2(deltaY, deltaX);
@@ -56,8 +56,8 @@ public class ForceFieldController : MonoBehaviour
         {
             currentRad += _speed * moveVector * Time.deltaTime;
 
-            float x = Mathf.Cos(currentRad) * _radius + centerPoint.position.x;
-            float y = Mathf.Sin(currentRad) * _radius + centerPoint.position.y;
+            float x = Mathf.Cos(currentRad) * _radius + coreCenter.position.x;
+            float y = Mathf.Sin(currentRad) * _radius + coreCenter.position.y;
 
             transform.position = new Vector3(x, y, 0f);
 
@@ -69,8 +69,8 @@ public class ForceFieldController : MonoBehaviour
     private IEnumerator MoveToPosition(float _radius, float _speed, int _moveVector, Vector3 _destination)
     {
         // Must account for the offset of the Center Point
-        float deltaX = transform.position.x - centerPoint.position.x;
-        float deltaY = transform.position.y - centerPoint.position.y;
+        float deltaX = transform.position.x - coreCenter.position.x;
+        float deltaY = transform.position.y - coreCenter.position.y;
 
         // Calculate the current position in radian degree
         float currentRad = Mathf.Atan2(deltaY, deltaX);
@@ -79,8 +79,8 @@ public class ForceFieldController : MonoBehaviour
         {
             currentRad += _speed * _moveVector * Time.deltaTime;
 
-            float _x = Mathf.Cos(currentRad) * _radius + centerPoint.position.x;
-            float _y = Mathf.Sin(currentRad) * _radius + centerPoint.position.y;
+            float _x = Mathf.Cos(currentRad) * _radius + coreCenter.position.x;
+            float _y = Mathf.Sin(currentRad) * _radius + coreCenter.position.y;
 
             transform.position = new Vector3(_x, _y, 0f);
 
@@ -90,7 +90,7 @@ public class ForceFieldController : MonoBehaviour
 
     private void SetRotation()
     {
-        Vector3 directionToCenter = centerPoint.position - transform.position;
+        Vector3 directionToCenter = coreCenter.position - transform.position;
         float angle = Mathf.Atan2(directionToCenter.y, directionToCenter.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90f));
     }

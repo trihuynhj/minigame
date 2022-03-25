@@ -502,7 +502,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2120666823}
-  - {fileID: 1043205432}
   - {fileID: 815929936}
   - {fileID: 408322707}
   - {fileID: 815577693}
@@ -613,7 +612,7 @@ Transform:
   - {fileID: 1083093160}
   - {fileID: 1358102971}
   m_Father: {fileID: 336509571}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &408322708
 Rigidbody2D:
@@ -1057,7 +1056,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 336509571}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &815577694
 MonoBehaviour:
@@ -1071,7 +1070,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5281f5121f5bd419763400ca15ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arenaCenter: {fileID: 1043205432}
   shapeRadius: 5
   shapePoints: 300
   minRadius: 3
@@ -1132,7 +1130,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 336509571}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &815929937
 SpriteRenderer:
@@ -1415,36 +1413,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1043205431
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1043205432}
-  m_Layer: 0
-  m_Name: ArenaCenter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1043205432
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1043205431}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 336509571}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1083093159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,7 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04b1b776fe89dc4d8b8e8fb3460a2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPoint: {fileID: 1043205432}
+  coreCenter: {fileID: 815929936}
   destination: {x: -15, y: 15, z: 0}
   circleRadius: 15
   speed: 0.4
@@ -1629,7 +1597,7 @@ Transform:
   m_LocalScale: {x: 4, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 336509571}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1212112081
 BoxCollider2D:
@@ -2147,7 +2115,7 @@ Transform:
   m_Children:
   - {fileID: 1860569432}
   m_Father: {fileID: 336509571}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1601955815
 MonoBehaviour:
@@ -2162,11 +2130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameArena: {fileID: 336509571}
-  entityIsEnemy: 0
-  entityType: []
-  entitySize: 0
-  entitySpeed: 0
-  entitySpawnPosition: 0
   entityPrefab: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
 --- !u!4 &1860569432 stripped
 Transform:
@@ -2581,6 +2544,6 @@ PrefabInstance:
     - target: {fileID: 6433950135888429338, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
       propertyPath: arenaCenter
       value: 
-      objectReference: {fileID: 1043205432}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}

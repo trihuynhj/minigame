@@ -6,8 +6,6 @@ public class ProtectShieldController : MonoBehaviour
     private LineRenderer shapeRenderer;
     private EdgeCollider2D shapeCollider;
 
-    [SerializeField] private Transform arenaCenter;
-
     [SerializeField] public float shapeRadius;
     [SerializeField] private int shapePoints;
     [SerializeField] private float minRadius, maxRadius, generateSpeed;
@@ -37,12 +35,12 @@ public class ProtectShieldController : MonoBehaviour
 
     private void Update()
     {
-        protectShieldCenter = new Vector2(arenaCenter.position.x + offsetX, arenaCenter.position.y + offsetY);
+        protectShieldCenter = new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
     }
 
     private void RenderShape()
     {
-        //shapeRadius = GenerateRadius(minRadius, maxRadius, generateSpeed);
+        shapeRadius = GenerateRadius(minRadius, maxRadius, generateSpeed);
         GenerateShapeAndCollision(shapePoints, shapeRadius);
     }
 
@@ -78,10 +76,10 @@ public class ProtectShieldController : MonoBehaviour
             // Add current point to list of EdgeCollider2D
             points.Add(new Vector2(x, y));
 
-            // Must separately bound the shape to Center Point's position
-            // Because LineRenderer's positions are independent of parent object's position
-            x += arenaCenter.position.x;
-            y += arenaCenter.position.y;
+            // Must separately bound the shape to Center Point's position (this ProtectShield object itself)
+            // Because LineRenderer's positions controlled by a script are independent of object's position
+            x += transform.position.x;
+            y += transform.position.y;
 
             // Now translate the current position to the LineRenderer
             Vector3 currentPosition = new Vector3(x, y, 0f);
@@ -89,6 +87,8 @@ public class ProtectShieldController : MonoBehaviour
             // currentStep is "Index" in the Inspector
             // currentPosition is the X, Y, Z in the Inspector
             shapeRenderer.SetPosition(currentStep, currentPosition);
+
+            shapeRenderer.sortingOrder = 5;
         }
 
         // Set all points of EdgeCollider2D
