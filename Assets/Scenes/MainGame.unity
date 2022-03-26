@@ -1002,13 +1002,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - Fix layer problem (can''t see ProtectShield
-
-    -
-    Fix ProtectShield''s sprite material (does not correctly render material)
-
-    -
-    Continue working on EntityController / EntityMovement'
+'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1055,7 +1049,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ddd7e70b3c6da3143a236d2f3fe937dc, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1130,7 +1124,7 @@ LineRenderer:
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!4 &815577693
@@ -1159,6 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5281f5121f5bd419763400ca15ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shapeMaterial: {fileID: 2100000, guid: ddd7e70b3c6da3143a236d2f3fe937dc, type: 2}
   shapeRadius: 5
   shapePoints: 300
   minRadius: 3

@@ -6,6 +6,8 @@ public class ProtectShieldController : MonoBehaviour
     private LineRenderer shapeRenderer;
     private EdgeCollider2D shapeCollider;
 
+    [SerializeField] private Material shapeMaterial;
+
     [SerializeField] public float shapeRadius;
     [SerializeField] private int shapePoints;
     [SerializeField] private float minRadius, maxRadius, generateSpeed;
@@ -87,7 +89,11 @@ public class ProtectShieldController : MonoBehaviour
             // currentStep is "Index" in the Inspector
             // currentPosition is the X, Y, Z in the Inspector
             shapeRenderer.SetPosition(currentStep, currentPosition);
+
+            shapeRenderer.material = shapeMaterial;
         }
+
+        shapeRenderer.UpdateGIMaterials();
 
         // Set all points of EdgeCollider2D
         shapeCollider.SetPoints(points);

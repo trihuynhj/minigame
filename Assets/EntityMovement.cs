@@ -24,9 +24,6 @@ public class EntityMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        float distanceFromCenter = Vector3.Distance(arenaCenter.position, transform.position);
-        Debug.Log(distanceFromCenter.ToString());
     }
 
     private void LinearMovement()
