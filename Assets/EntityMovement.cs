@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityMovement : MonoBehaviour
 {
-    public Transform arenaCenter;
+    public Transform coreCenter;
 
     private Rigidbody2D rb;
     public float speed;
@@ -13,6 +13,9 @@ public class EntityMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Offset the Z axis so that Entity is on same layer with Core
+        transform.position = new Vector3(transform.position.x, transform.position.y, 8f);
+
         rb = this.GetComponent<Rigidbody2D>();
         LinearMovement();
     }
@@ -20,7 +23,7 @@ public class EntityMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(rb.position, arenaCenter.position) < 0.1f)
+        if (Vector3.Distance(transform.position, coreCenter.position) < .1f)
         {
             Destroy(gameObject);
         }
@@ -28,7 +31,7 @@ public class EntityMovement : MonoBehaviour
 
     private void LinearMovement()
     {
-        Vector3 destination = arenaCenter.position - transform.position;
-        rb.velocity = destination.normalized * speed;
+        Vector3 _destination = coreCenter.position - transform.position;
+            rb.velocity = _destination.normalized * speed;
     }
 }

@@ -608,7 +608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408322704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1083093160}
@@ -1002,7 +1002,13 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-'
+    - Calculate Core Radius from x and y scales to fix the
+    EntityDestroy method.
+
+    - Continue working on EntityController / EntityMovement
+
+    -
+    PlayerAttack'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1049,7 +1055,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: ddd7e70b3c6da3143a236d2f3fe937dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1210,7 +1216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815929935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 336509571}
@@ -1253,11 +1259,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1961580089
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.32055888, g: 0.40448385, b: 0.8207547, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1677,7 +1683,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212112077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: 7}
+  m_LocalPosition: {x: 0, y: -15, z: 8}
   m_LocalScale: {x: 4, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 336509571}
@@ -2194,7 +2200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601955813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1860569432}
@@ -2215,7 +2221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 480171841}
   gameArena: {fileID: 336509571}
-  entitySpeed: 1
+  coreCenter: {fileID: 815929936}
+  entitySpeed: 3
   entityPrefab: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
 --- !u!4 &1860569432 stripped
 Transform:
@@ -2372,8 +2379,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2014627145
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.49553236, g: 0.8018868, b: 0.47961906, a: 1}
@@ -2479,22 +2486,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Entity
       objectReference: {fileID: 0}
-    - target: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6433950135888429336, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6433950135888429336, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6433950135888429337, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2540,7 +2531,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6433950135888429338, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
-      propertyPath: arenaCenter
+      propertyPath: coreCenter
       value: 
       objectReference: {fileID: 815929936}
     m_RemovedComponents: []

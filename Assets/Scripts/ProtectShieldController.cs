@@ -90,10 +90,8 @@ public class ProtectShieldController : MonoBehaviour
             // currentPosition is the X, Y, Z in the Inspector
             shapeRenderer.SetPosition(currentStep, currentPosition);
 
-            shapeRenderer.material = shapeMaterial;
+            //shapeRenderer.material = shapeMaterial;
         }
-
-        shapeRenderer.UpdateGIMaterials();
 
         // Set all points of EdgeCollider2D
         shapeCollider.SetPoints(points);
