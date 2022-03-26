@@ -2,14 +2,19 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreSystem : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    [SerializeField] public Text scoreText;
+    [SerializeField] private Text scoreText;
 
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private ProtectShieldController protectShield;
+    [SerializeField] private Transform player;
+    [SerializeField] private ProtectShieldController protectShieldController;
 
+    // Level that determines game progression, in range of 0 to 16
+    public int gameLevel;
+
+    // Score that the Player gains/loses
     private float vitalityPoint;
+    private float nextLevelPoint;
 
     public bool outOfProtectShield;
     private float decrementInterval;
@@ -18,6 +23,8 @@ public class ScoreSystem : MonoBehaviour
 
     private void Start()
     {
+        gameLevel = 0;
+
         vitalityPoint = 100f;
 
         outOfProtectShield = false;
@@ -47,8 +54,8 @@ public class ScoreSystem : MonoBehaviour
     // Check if Player is out of ProtectShield, if so start the Coroutine to decrement vitalityPoint
     private void CheckOutOfBound()
     {
-        float playerDistance = Vector3.Distance(playerTransform.position, protectShield.protectShieldCenter);
-        float protectShieldBound = protectShield.shapeRadius + outBuffer;
+        float playerDistance = Vector3.Distance(player.position, protectShieldController.protectShieldCenter);
+        float protectShieldBound = protectShieldController.shapeRadius + outBuffer;
 
         if (playerDistance > protectShieldBound & coroutine == null)
         {

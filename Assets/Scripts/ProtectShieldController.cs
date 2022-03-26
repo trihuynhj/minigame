@@ -17,7 +17,7 @@ public class ProtectShieldController : MonoBehaviour
     // Center of the Protect Shield
     public Vector2 protectShieldCenter;
 
-    [SerializeField] ScoreSystem scoreSystem;
+    [SerializeField] GameController gameController;
 
     private void Awake()
     {
@@ -87,8 +87,6 @@ public class ProtectShieldController : MonoBehaviour
             // currentStep is "Index" in the Inspector
             // currentPosition is the X, Y, Z in the Inspector
             shapeRenderer.SetPosition(currentStep, currentPosition);
-
-            shapeRenderer.sortingOrder = 5;
         }
 
         // Set all points of EdgeCollider2D

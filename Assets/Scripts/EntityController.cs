@@ -4,23 +4,27 @@ using UnityEngine;
 
 public class EntityController : MonoBehaviour
 {
+    [SerializeField] private GameController gameController;
     [SerializeField] private Transform gameArena;
+
+    private int currentLevel;
 
     private int entityNumber;
 
     private bool entityIsEnemy;
     private string[] entityType;
-    private float entitySize;
-    private float entitySpeed;
-    private float entitySpawnPosition;
+    [SerializeField] private float entitySpeed;
 
     [SerializeField] private GameObject entityPrefab;
     private float respawnTime;
 
+    private float cornerToCenterDistance = 28f;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        // Reference the current level from GameController script
+        currentLevel = gameController.gameLevel;
     }
 
     // Update is called once per frame
@@ -35,10 +39,37 @@ public class EntityController : MonoBehaviour
     private void SpawnEntity()
     {
         GameObject e = Instantiate(entityPrefab, transform);
-        // Must fix entity's position to Game Arena's center point (using GameArea's original position)
-        e.transform.position = new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0f) + gameArena.position;
 
+        // SET ENTITY's SPRITE & SPAWN POSITION
+        // Must fix entity's position to Game Arena's center point (using GameArea's original position)
+        e.transform.position = GenerateSpawnPosition();
+        e.transform.localScale = GenerateEntitySize();
+
+        // SET ENTITY's MOVEMENT
         EntityMovement entityMovement = e.GetComponent<EntityMovement>();
         entityMovement.arenaCenter = transform;
+        entityMovement.speed = entitySpeed;
+    }
+
+    private Vector3 GenerateSpawnPosition()
+    {
+        // Declare default spawnPosition at arena's center
+        Vector3 _spawnPosition = gameArena.position;
+        float distanceFromCenter = cornerToCenterDistance - currentLevel * Random.Range(1f, 5f);
+
+        _spawnPosition.x = Random.Range(-distanceFromCenter, distanceFromCenter);
+        _spawnPosition.y = Random.Range(-distanceFromCenter, distanceFromCenter);
+
+        return _spawnPosition;
+    }
+
+    private Vector3 GenerateEntitySize()
+    {
+        Vector3 _entitySize = Vector3.one;
+        float _sizeScaled = currentLevel * Random.Range(1f, 5f);
+
+        _entitySize *= _sizeScaled;
+
+        return _entitySize;
     }
 }

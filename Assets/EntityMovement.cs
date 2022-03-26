@@ -7,14 +7,13 @@ public class EntityMovement : MonoBehaviour
     public Transform arenaCenter;
 
     private Rigidbody2D rb;
-    private float speed;
+    public float speed;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        speed = .5f;
         LinearMovement();
     }
 
@@ -25,6 +24,9 @@ public class EntityMovement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        float distanceFromCenter = Vector3.Distance(arenaCenter.position, transform.position);
+        Debug.Log(distanceFromCenter.ToString());
     }
 
     private void LinearMovement()
