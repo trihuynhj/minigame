@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityMovement : MonoBehaviour
@@ -9,8 +7,6 @@ public class EntityMovement : MonoBehaviour
     private Rigidbody2D rb;
     public float speed;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         // Offset the Z axis so that Entity is on same layer with Core
@@ -20,7 +16,6 @@ public class EntityMovement : MonoBehaviour
         LinearMovement();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(transform.position, coreCenter.position) < .1f)

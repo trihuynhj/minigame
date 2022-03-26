@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityController : MonoBehaviour
@@ -21,14 +19,12 @@ public class EntityController : MonoBehaviour
 
     private float cornerToCenterDistance = 28f;
 
-    // Start is called before the first frame update
     void Start()
     {
         // Reference the current level from GameController script
         currentLevel = gameController.gameLevel;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
