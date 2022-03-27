@@ -38,6 +38,7 @@ public class ProtectShieldController : MonoBehaviour
     private void Update()
     {
         protectShieldCenter = new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
+        //Debug.Log(transform.position.ToString());
     }
 
     private void RenderShape()
