@@ -6,20 +6,20 @@ public class ProtectShieldController : MonoBehaviour
     private LineRenderer shieldRenderer;
     private EdgeCollider2D shieldCollider;
 
+    [SerializeField] GameController gameController;
     [SerializeField] private Material shieldMaterial;
 
     [SerializeField] public float shieldRadius;
     [SerializeField] private int shieldPoints;
-    [SerializeField] private float shieldMinRadius, shieldMaxRadius, shieldGenerateSpeed;
+    [SerializeField] private float shieldMinRadius, shieldMaxRadius;
+    [SerializeField] private float shieldGenerateInterval, shieldGenerateSpeed;
     [SerializeField] private float offsetX, offsetY;
     
-    // This determine shield grow (true) or shrink (false)
+    // Determines shield grow (true) or shrink (false)
     private bool shieldGenerateVector;
 
     // Center of the Protect Shield (in context of World Space, not relative to its parent object)
-    public Vector2 shieldCenter;
-
-    [SerializeField] GameController gameController;
+    [HideInInspector] public Vector2 shieldCenter;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class ProtectShieldController : MonoBehaviour
     private void Start()
     {
         shieldGenerateVector = true;
-        InvokeRepeating("RenderShield", .5f, .01f);
+        InvokeRepeating("RenderShield", .5f, shieldGenerateInterval);
 
         shieldRadius = 5f;
     }

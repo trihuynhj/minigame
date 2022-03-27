@@ -3,27 +3,29 @@ using UnityEngine;
 public class EntityMovement : MonoBehaviour
 {
     public Transform coreTransform;
-
-    private Rigidbody2D rb;
+    
+    private Rigidbody2D eRigidbody;
+    private Collider2D eCollider;
     public float speed;
 
     void Start()
     {
-        rb = this.GetComponent<Rigidbody2D>();
+        eRigidbody = this.GetComponent<Rigidbody2D>();
+        eCollider = this.GetComponent<Collider2D>();
         LinearMovement();
-    }
-
-    void Update()
-    {
-        if (Vector3.Distance(transform.position, coreTransform.position) < coreTransform.localScale.x + .1f)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void LinearMovement()
     {
         Vector3 _destination = coreTransform.position - transform.position;
-        rb.velocity = _destination.normalized * speed;
+        eRigidbody.velocity = _destination.normalized * speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Core")
+        {
+            Destroy(gameObject);
+        }
     }
 }

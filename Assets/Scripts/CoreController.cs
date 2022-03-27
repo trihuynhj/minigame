@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CoreController : MonoBehaviour
 {
-    private float coreInitialRadius;
+    [SerializeField] private float coreInitialRadius;
     [SerializeField] private float coreMinRadius, coreMaxRadius;
     [SerializeField] private float coreGenerateSpeed;
     
@@ -18,17 +18,17 @@ public class CoreController : MonoBehaviour
 
     private void Update()
     {
-        CoreVector();
-        CoreLinearGeneration();
+        GenerateVector();
+        LinearGenerateShape();
     }
 
-    private void CoreLinearGeneration()
+    private void LinearGenerateShape()
     {
         transform.localScale += Vector3.one * coreGenerateVector * (coreGenerateSpeed * Time.deltaTime);
         Debug.Log(Time.deltaTime.ToString());
     }
 
-    private void CoreVector()
+    private void GenerateVector()
     {
         if (transform.localScale.magnitude <= coreMinRadius)
         {

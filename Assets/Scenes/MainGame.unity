@@ -1159,16 +1159,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5281f5121f5bd419763400ca15ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 480171841}
   shieldMaterial: {fileID: 0}
   shieldRadius: 0
   shieldPoints: 300
-  shieldMinRadius: 4
+  shieldMinRadius: 6
   shieldMaxRadius: 10
-  shieldGenerateSpeed: 0.05
+  shieldGenerateInterval: 0.01
+  shieldGenerateSpeed: 0.01
   offsetX: 0
   offsetY: 0
   shieldCenter: {x: 0, y: 0}
-  gameController: {fileID: 480171841}
 --- !u!68 &815577695
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1201,10 +1202,11 @@ GameObject:
   m_Component:
   - component: {fileID: 815929936}
   - component: {fileID: 815929937}
+  - component: {fileID: 815929939}
   - component: {fileID: 815929938}
   m_Layer: 0
   m_Name: Core
-  m_TagString: Untagged
+  m_TagString: Core
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1218,7 +1220,7 @@ Transform:
   m_GameObject: {fileID: 815929935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 336509571}
   m_RootOrder: 4
@@ -1286,9 +1288,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e6e1e6b7c56e044acef9e7cd263e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coreMinRadius: 5
-  coreMaxRadius: 15
-  coreGenerateSpeed: 2
+  coreInitialRadius: 3
+  coreMinRadius: 3
+  coreMaxRadius: 4
+  coreGenerateSpeed: 0.25
+--- !u!58 &815929939
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815929935}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &885463517
 GameObject:
   m_ObjectHideFlags: 0
