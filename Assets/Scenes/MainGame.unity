@@ -1002,9 +1002,6 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - Calculate Core Radius from x and y scales to fix the
-    EntityDestroy method.
-
     - Continue working on EntityController / EntityMovement
 
     -
@@ -2257,7 +2254,8 @@ MonoBehaviour:
   gameController: {fileID: 480171841}
   gameArena: {fileID: 336509571}
   coreTransform: {fileID: 815929936}
-  entitySpeed: 3
+  entitySpeed: 8
+  TEST_enemySize: 1
   entityPrefab: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
 --- !u!4 &1860569432 stripped
 Transform:

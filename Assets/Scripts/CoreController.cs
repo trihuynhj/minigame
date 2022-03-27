@@ -24,8 +24,6 @@ public class CoreController : MonoBehaviour
     {
         LinearGenerateShape();
         GenerateVector();
-
-        Debug.Log("X SCALE = " + transform.localScale.x.ToString());
     }
 
     private void LinearGenerateShape()
