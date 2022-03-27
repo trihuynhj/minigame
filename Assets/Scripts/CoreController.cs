@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class CoreController : MonoBehaviour
 {
-    [SerializeField] private float coreInitialRadius;
-    [SerializeField] private float coreMinRadius, coreMaxRadius;
+    private CircleCollider2D coreCollider;
+
+    [SerializeField] private float coreInitialScale;
+    [SerializeField] private float coreMinSize, coreMaxSize;
     [SerializeField] private float coreGenerateSpeed;
     
     // Determines core grow (1) or shrink (-1)
@@ -12,14 +14,18 @@ public class CoreController : MonoBehaviour
 
     private void Start()
     {
-        transform.localScale = Vector3.one * coreInitialRadius;
+        coreCollider = GetComponent<CircleCollider2D>();
+
+        transform.localScale = Vector3.one * coreInitialScale;
         coreGenerateVector = 1;
     }
 
     private void Update()
     {
-        GenerateVector();
         LinearGenerateShape();
+        GenerateVector();
+
+        Debug.Log("X SCALE = " + transform.localScale.x.ToString());
     }
 
     private void LinearGenerateShape()
@@ -30,13 +36,14 @@ public class CoreController : MonoBehaviour
 
     private void GenerateVector()
     {
-        if (transform.localScale.magnitude <= coreMinRadius)
-        {
-            coreGenerateVector = 1;
-        }
-        else if (transform.localScale.magnitude >= coreMaxRadius)
+        if (transform.localScale.x >= coreMaxSize)
         {
             coreGenerateVector = -1;
         }
+        else if (transform.localScale.x <= coreMinSize)
+        {
+            coreGenerateVector = 1;
+        }
+        else { return; }
     }
 }
