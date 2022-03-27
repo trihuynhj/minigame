@@ -1159,15 +1159,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5281f5121f5bd419763400ca15ca54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shapeMaterial: {fileID: 2100000, guid: ddd7e70b3c6da3143a236d2f3fe937dc, type: 2}
-  shapeRadius: 5
-  shapePoints: 300
-  minRadius: 3
-  maxRadius: 10
-  generateSpeed: 0.03
+  shieldMaterial: {fileID: 0}
+  shieldRadius: 0
+  shieldPoints: 300
+  shieldMinRadius: 4
+  shieldMaxRadius: 10
+  shieldGenerateSpeed: 0.05
   offsetX: 0
   offsetY: 0
-  protectShieldCenter: {x: 0, y: 0}
+  shieldCenter: {x: 0, y: 0}
   gameController: {fileID: 480171841}
 --- !u!68 &815577695
 EdgeCollider2D:
@@ -1201,6 +1201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 815929936}
   - component: {fileID: 815929937}
+  - component: {fileID: 815929938}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -1217,7 +1218,7 @@ Transform:
   m_GameObject: {fileID: 815929935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 336509571}
   m_RootOrder: 4
@@ -1273,6 +1274,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &815929938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815929935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1e6e1e6b7c56e044acef9e7cd263e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coreMinRadius: 5
+  coreMaxRadius: 15
+  coreGenerateSpeed: 2
 --- !u!1 &885463517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1655,7 +1671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04b1b776fe89dc4d8b8e8fb3460a2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coreCenter: {fileID: 815929936}
+  coreTransform: {fileID: 815929936}
   destination: {x: -15, y: 15, z: 0}
   circleRadius: 15
   speed: 0.4
@@ -2221,7 +2237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 480171841}
   gameArena: {fileID: 336509571}
-  coreCenter: {fileID: 815929936}
+  coreTransform: {fileID: 815929936}
   entitySpeed: 3
   entityPrefab: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
 --- !u!4 &1860569432 stripped
@@ -2531,7 +2547,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6433950135888429338, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
+      propertyPath: core
+      value: 
+      objectReference: {fileID: 815929936}
+    - target: {fileID: 6433950135888429338, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6433950135888429338, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
       propertyPath: coreCenter
+      value: 
+      objectReference: {fileID: 815929936}
+    - target: {fileID: 6433950135888429338, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
+      propertyPath: coreTransform
       value: 
       objectReference: {fileID: 815929936}
     m_RemovedComponents: []

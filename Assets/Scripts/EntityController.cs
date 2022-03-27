@@ -4,7 +4,7 @@ public class EntityController : MonoBehaviour
 {
     [SerializeField] private GameController gameController;
     [SerializeField] private Transform gameArena;
-    [SerializeField] private Transform coreCenter;
+    [SerializeField] private Transform coreTransform;
 
     private int currentLevel;
 
@@ -44,7 +44,7 @@ public class EntityController : MonoBehaviour
 
         // SET ENTITY's MOVEMENT
         EntityMovement entityMovement = e.GetComponent<EntityMovement>();
-        entityMovement.coreCenter = coreCenter;
+        entityMovement.coreTransform = coreTransform;
         entityMovement.speed = entitySpeed;
     }
 

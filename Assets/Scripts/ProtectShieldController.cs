@@ -3,53 +3,52 @@ using UnityEngine;
 
 public class ProtectShieldController : MonoBehaviour
 {
-    private LineRenderer shapeRenderer;
-    private EdgeCollider2D shapeCollider;
+    private LineRenderer shieldRenderer;
+    private EdgeCollider2D shieldCollider;
 
-    [SerializeField] private Material shapeMaterial;
+    [SerializeField] private Material shieldMaterial;
 
-    [SerializeField] public float shapeRadius;
-    [SerializeField] private int shapePoints;
-    [SerializeField] private float minRadius, maxRadius, generateSpeed;
+    [SerializeField] public float shieldRadius;
+    [SerializeField] private int shieldPoints;
+    [SerializeField] private float shieldMinRadius, shieldMaxRadius, shieldGenerateSpeed;
     [SerializeField] private float offsetX, offsetY;
     
-    // This determines shape grow (true) or shrink (false)
-    private bool generateVector;
+    // This determine shield grow (true) or shrink (false)
+    private bool shieldGenerateVector;
 
-    // Center of the Protect Shield
-    public Vector2 protectShieldCenter;
+    // Center of the Protect Shield (in context of World Space, not relative to its parent object)
+    public Vector2 shieldCenter;
 
     [SerializeField] GameController gameController;
 
     private void Awake()
     {
-        shapeRenderer = GetComponent<LineRenderer>();
-        shapeCollider = GetComponent<EdgeCollider2D>();
+        shieldRenderer = GetComponent<LineRenderer>();
+        shieldCollider = GetComponent<EdgeCollider2D>();
     }
 
     private void Start()
     {
-        generateVector = true;
-        InvokeRepeating("RenderShape", .5f, .01f);
+        shieldGenerateVector = true;
+        InvokeRepeating("RenderShield", .5f, .01f);
 
-        shapeRadius = 5f;
+        shieldRadius = 5f;
     }
 
     private void Update()
     {
-        protectShieldCenter = new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
-        //Debug.Log(transform.position.ToString());
+        shieldCenter = new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
     }
 
-    private void RenderShape()
+    private void RenderShield()
     {
-        shapeRadius = GenerateRadius(minRadius, maxRadius, generateSpeed);
-        GenerateShapeAndCollision(shapePoints, shapeRadius);
+        shieldRadius = GenerateRadius(shieldMinRadius, shieldMaxRadius, shieldGenerateSpeed);
+        GenerateShapeAndCollision(shieldPoints, shieldRadius);
     }
 
     private void GenerateShapeAndCollision(int steps, float radius)
     {
-        shapeRenderer.positionCount = steps;
+        shieldRenderer.positionCount = steps;
         List<Vector2> points = new List<Vector2>();
 
         for (int currentStep = 0; currentStep < steps; currentStep++)
@@ -79,7 +78,7 @@ public class ProtectShieldController : MonoBehaviour
             // Add current point to list of EdgeCollider2D
             points.Add(new Vector2(x, y));
 
-            // Must separately bound the shape to Center Point's position (this ProtectShield object itself)
+            // Must separately bound the shield to Center Point's position (this ProtectShield object itself)
             // Because LineRenderer's positions controlled by a script are independent of object's position
             x += transform.position.x;
             y += transform.position.y;
@@ -89,27 +88,27 @@ public class ProtectShieldController : MonoBehaviour
 
             // currentStep is "Index" in the Inspector
             // currentPosition is the X, Y, Z in the Inspector
-            shapeRenderer.SetPosition(currentStep, currentPosition);
+            shieldRenderer.SetPosition(currentStep, currentPosition);
         }
 
         // Set all points of EdgeCollider2D
-        shapeCollider.SetPoints(points);
+        shieldCollider.SetPoints(points);
     }
 
     private float GenerateRadius(float minR, float maxR, float speed)
     {
-        float _radius = shapeRadius;
+        float _radius = shieldRadius;
 
-        if (generateVector)
+        if (shieldGenerateVector)
         {
             _radius += speed;
-            if (_radius >= maxR) { generateVector = false; }
+            if (_radius >= maxR) { shieldGenerateVector = false; }
             return _radius;
         }
         else
         {
             _radius -= speed;
-            if (_radius <= minR) { generateVector = true; }
+            if (_radius <= minR) { shieldGenerateVector = true; }
             return _radius;
         }
     }

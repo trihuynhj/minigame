@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EntityMovement : MonoBehaviour
 {
-    public Transform coreCenter;
+    public Transform coreTransform;
 
     private Rigidbody2D rb;
     public float speed;
@@ -15,7 +15,7 @@ public class EntityMovement : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, coreCenter.position) < .1f)
+        if (Vector3.Distance(transform.position, coreTransform.position) < coreTransform.localScale.x + .1f)
         {
             Destroy(gameObject);
         }
@@ -23,7 +23,7 @@ public class EntityMovement : MonoBehaviour
 
     private void LinearMovement()
     {
-        Vector3 _destination = coreCenter.position - transform.position;
+        Vector3 _destination = coreTransform.position - transform.position;
         rb.velocity = _destination.normalized * speed;
     }
 }
