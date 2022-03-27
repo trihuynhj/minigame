@@ -1002,10 +1002,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - Continue working on EntityController / EntityMovement
+    - EntityController (Entity''s properties)
 
-    -
-    PlayerAttack'
+    - PlayerAttack
+    (shooting projectiles; maybe object pooling?)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
