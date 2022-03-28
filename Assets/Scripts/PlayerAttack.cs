@@ -4,42 +4,63 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    // ATTACK ARROW
     [SerializeField] private Transform attackArrow;
+    [SerializeField] private float attackArrowDefaultPosition;
+
+    // PROJECTILE
     [SerializeField] private Transform projectileContainer;
-    [SerializeField] private float arrowDefaultPosition, projectileDefaultPosition;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float projectileDefaultPosition;
+    [SerializeField] private float attackInterval;
+    private bool canSpawnProjectile;
+
+    private void Start()
+    {
+        canSpawnProjectile = true;
+    }
 
     private void Update()
     {
-        SetPosition(attackArrow, arrowDefaultPosition);
+        SetPosition(attackArrow, attackArrowDefaultPosition);
         SetRotationToMouse(attackArrow);
 
-        // TESTING
-        {
-            // Convert mouse's screen position to world position
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f);
-            Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(mousePos);
-            Vector2 mouseWorldPosition = new Vector2(screenToWorld.x, screenToWorld.y);
-            mouseWorldPosition.x -= transform.position.x;
-            mouseWorldPosition.y -= transform.position.y;
+        if (Input.GetMouseButtonDown(0) && canSpawnProjectile) { SpawnProjectile(); }
 
-            Debug.Log(mouseWorldPosition.ToString());
-        }
+        SetAttackInterval(attackInterval);
     }
+
+    private void SpawnProjectile()
+    {
+        // Instantiate and Set Projectile Initial Position
+        GameObject p = Instantiate(projectilePrefab, projectileContainer);
+        SetPosition(p.transform, projectileDefaultPosition);
+        
+        // Set Projectile Movement to Mouse Position
+        ProjectileController pController = p.GetComponent<ProjectileController>();
+        pController.targetPosition = MousePositionToPlayer();
+    }
+
+    private void SetAttackInterval(float timeWait)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < timeWait)
+        {
+            canSpawnProjectile = false;
+            elapsedTime += Time.deltaTime;
+        }
+
+
+    } 
 
     private void SetPosition(Transform target, float targetDefaultPosition)
     {
-        // Convert mouse's screen position to world position
-        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f);
-        Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector2 mouseWorldPosition = new Vector2(screenToWorld.x, screenToWorld.y);
-
-        // Calculate relative position of mouse to Player object
-        float deltaX = mouseWorldPosition.x - transform.position.x;
-        float deltaY = mouseWorldPosition.y - transform.position.y;
+        Vector2 delta = MousePositionToPlayer();
 
         // Convert mousePosition to radian position
         // LEFT is the default position (0 radian degree)
-        float currentRad = Mathf.Atan2(deltaY, deltaX);
+        float currentRad = Mathf.Atan2(delta.y, delta.x);
 
         // Translate currentRad into scale x and y,
         // then convert to actual position with designated radius (radius = arrow's x coordinate)
@@ -49,6 +70,20 @@ public class PlayerAttack : MonoBehaviour
 
         // Update arrow's position
         target.position = new Vector3(x, y, 0f);
+    }
+
+    private Vector2 MousePositionToPlayer()
+    {
+        // Convert mouse's screen position to world position
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f);
+        Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector2 mouseWorldPosition = new Vector2(screenToWorld.x, screenToWorld.y);
+
+        // Calculate relative position of mouse to Player object
+        float x = mouseWorldPosition.x - transform.position.x;
+        float y = mouseWorldPosition.y - transform.position.y;
+
+        return new Vector2(x, y);
     }
 
     private void SetRotationToMouse(Transform target)

@@ -9,13 +9,11 @@ public class EntityController : MonoBehaviour
     private int currentLevel;
 
     private int entityNumber;
-
     private bool entityIsEnemy;
     private string[] entityType;
-    [SerializeField] private float entitySpeed, TEST_enemySize;
-
+    [SerializeField] private float entitySpeed;
     [SerializeField] private GameObject entityPrefab;
-    private float respawnTime;
+    private float entityRespawnTime;
 
     private float cornerToCenterDistance = 28f;
 
@@ -63,9 +61,7 @@ public class EntityController : MonoBehaviour
     private Vector3 GenerateEntitySize()
     {
         Vector3 _entitySize = Vector3.one;
-        float _sizeScaled = TEST_enemySize * Random.Range(1f, 500f) / 100f;
-
-        _entitySize += Vector3.one * _sizeScaled;
+        _entitySize += Vector3.one * Random.Range(1f, 100f) / 10f;
 
         return _entitySize;
     }
