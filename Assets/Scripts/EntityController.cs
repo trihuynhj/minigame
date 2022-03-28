@@ -19,13 +19,13 @@ public class EntityController : MonoBehaviour
 
     private float cornerToCenterDistance = 28f;
 
-    void Start()
+    private void Start()
     {
         // Reference the current level from GameController script
         currentLevel = gameController.gameLevel;
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {

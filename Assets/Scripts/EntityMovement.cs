@@ -7,7 +7,7 @@ public class EntityMovement : MonoBehaviour
     private Rigidbody2D eRigidbody;
     public float speed;
 
-    void Start()
+    private void Start()
     {
         eRigidbody = this.GetComponent<Rigidbody2D>();
         LinearMovement();
