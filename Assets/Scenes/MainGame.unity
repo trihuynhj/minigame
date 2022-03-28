@@ -1011,7 +1011,7 @@ MonoBehaviour:
     - EntityController (Entity''s properties)
 
     - PlayerAttack
-    (shooting projectiles; maybe object pooling?)'
+    / ProjectileMovement'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
