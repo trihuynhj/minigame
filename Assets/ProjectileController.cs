@@ -3,7 +3,7 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     private Rigidbody2D pRigidbody;
-    [HideInInspector] public Vector3 targetPosition;
+    public Vector3 targetPosition;
 
     [SerializeField] private float pSpeed;
 

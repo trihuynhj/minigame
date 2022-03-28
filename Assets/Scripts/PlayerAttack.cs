@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        // Instantiate and Set Projectile Initial Position
+        // Instantiate (inside ProjectileContainer) and Set Projectile Initial Position
         GameObject p = Instantiate(projectilePrefab, projectileContainer);
         SetPosition(p.transform, projectileDefaultPosition);
         
@@ -51,12 +51,13 @@ public class PlayerAttack : MonoBehaviour
             elapsedTime += Time.deltaTime;
         }
 
+        canSpawnProjectile = true;
 
     } 
 
     private void SetPosition(Transform target, float targetDefaultPosition)
     {
-        Vector2 delta = MousePositionToPlayer();
+        Vector3 delta = MousePositionToPlayer();
 
         // Convert mousePosition to radian position
         // LEFT is the default position (0 radian degree)
@@ -72,7 +73,7 @@ public class PlayerAttack : MonoBehaviour
         target.position = new Vector3(x, y, 0f);
     }
 
-    private Vector2 MousePositionToPlayer()
+    private Vector3 MousePositionToPlayer()
     {
         // Convert mouse's screen position to world position
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f);
@@ -83,7 +84,7 @@ public class PlayerAttack : MonoBehaviour
         float x = mouseWorldPosition.x - transform.position.x;
         float y = mouseWorldPosition.y - transform.position.y;
 
-        return new Vector2(x, y);
+        return new Vector3(x, y, 0f);
     }
 
     private void SetRotationToMouse(Transform target)

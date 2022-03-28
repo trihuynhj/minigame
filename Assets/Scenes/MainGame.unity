@@ -676,9 +676,9 @@ MonoBehaviour:
   attackArrow: {fileID: 1358102971}
   attackArrowDefaultPosition: 0
   projectileContainer: {fileID: 884059162}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 6113859537689597167, guid: 944cd6337bd346b4bbb3155541a54af5, type: 3}
   projectileDefaultPosition: 3
-  attackInterval: 0
+  attackInterval: 1
 --- !u!1 &446341910
 GameObject:
   m_ObjectHideFlags: 0

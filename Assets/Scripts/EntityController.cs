@@ -25,7 +25,7 @@ public class EntityController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             SpawnEntity();
         }
