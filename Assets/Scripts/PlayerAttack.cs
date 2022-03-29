@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
         GameObject projectile = Instantiate(projectilePrefab, projectileContainer);
         SetPosition(projectile.transform, projectileDefaultPosition);
 
-        // Set Projectile movement toward Mouse Position
+        // Set Projectile movement toward Mouse Position via its Rigidbody2D
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 directionToMouse = mouseWorldPosition - projectile.transform.position;
