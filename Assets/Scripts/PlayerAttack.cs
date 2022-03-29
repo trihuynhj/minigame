@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
     // PROJECTILE
     [SerializeField] private Transform projectileContainer;
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileSpeed, projectileDefaultPosition;
+    [SerializeField] private float projectileLifetime, projectileSpeed, projectileDefaultPosition;
     [SerializeField] private float attackInterval;
     private bool canSpawnProjectile;
 
@@ -22,29 +22,28 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        // TESTING
-        Vector3 mousePos = MousePositionToPlayer();
-        Debug.Log("Current Mouse Position: " + mousePos.ToString());
-
         SetPosition(attackArrow, attackArrowDefaultPosition);
         SetRotationToMouse(attackArrow);
 
         if (Input.GetMouseButtonDown(0) && canSpawnProjectile) { SpawnProjectile(); }
-
         SetAttackInterval(attackInterval);
     }
 
     private void SpawnProjectile()
     {
         // Instantiate (inside ProjectileContainer) and Set Projectile Initial Position
-        GameObject p = Instantiate(projectilePrefab, projectileContainer);
-        SetPosition(p.transform, projectileDefaultPosition);
-        
-        // Set Projectile Movement to Mouse Position
-        ProjectileController pController = p.GetComponent<ProjectileController>();
-        pController.playerTransform = transform;
-        pController.targetPosition = MousePositionToPlayer();
-        pController.pSpeed = projectileSpeed;
+        GameObject projectile = Instantiate(projectilePrefab, projectileContainer);
+        SetPosition(projectile.transform, projectileDefaultPosition);
+
+        // Set Projectile movement toward Mouse Position
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 directionToMouse = mouseWorldPosition - projectile.transform.position;
+        projectileRb.AddForce(directionToMouse * projectileSpeed, ForceMode2D.Impulse);
+
+        // Set Projectile lifetime in seconds after instantiation
+        ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
+        projectileController.lifetimeInSeconds = projectileLifetime;
     }
 
     private void SetAttackInterval(float timeWait)
@@ -63,11 +62,15 @@ public class PlayerAttack : MonoBehaviour
 
     private void SetPosition(Transform target, float targetDefaultPosition)
     {
-        Vector3 delta = MousePositionToPlayer();
+        // Convert mouse's screen position to world position
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Calculate relative position of mouse to Player object
+        Vector3 mousePositionToPlayer = mouseWorldPosition - transform.position;
 
         // Convert mousePosition to radian position
         // LEFT is the default position (0 radian degree)
-        float currentRad = Mathf.Atan2(delta.y, delta.x);
+        float currentRad = Mathf.Atan2(mousePositionToPlayer.y, mousePositionToPlayer.x);
 
         // Translate currentRad into scale x and y,
         // then convert to actual position with designated radius (radius = arrow's x coordinate)
@@ -77,20 +80,6 @@ public class PlayerAttack : MonoBehaviour
 
         // Update arrow's position
         target.position = new Vector3(x, y, 0f);
-    }
-
-    private Vector3 MousePositionToPlayer()
-    {
-        // Convert mouse's screen position to world position
-        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 1.0f);
-        Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector2 mouseWorldPosition = new Vector2(screenToWorld.x, screenToWorld.y);
-
-        // Calculate relative position of mouse to Player object
-        float x = mouseWorldPosition.x - transform.position.x;
-        float y = mouseWorldPosition.y - transform.position.y;
-
-        return new Vector3(x, y, 0f);
     }
 
     private void SetRotationToMouse(Transform target)
