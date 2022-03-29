@@ -3,14 +3,21 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     private Rigidbody2D pRigidbody;
-    public Vector3 targetPosition;
+    public float pSpeed;
 
-    [SerializeField] private float pSpeed;
+    public Transform playerTransform;
+    public Vector3 targetPosition;
+    
 
     private void Start()
     {
         pRigidbody = GetComponent<Rigidbody2D>();
         ProjectileMovement();
+    }
+
+    private void Update()
+    {
+        Debug.Log("Target Position: " + targetPosition.ToString());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,7 +30,7 @@ public class ProjectileController : MonoBehaviour
 
     private void ProjectileMovement()
     {
-        Vector2 _destination = transform.position - targetPosition;
+        Vector2 _destination = targetPosition - playerTransform.position;
         pRigidbody.velocity = _destination.normalized * pSpeed;
     }
 }

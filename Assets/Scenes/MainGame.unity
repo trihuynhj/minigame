@@ -674,9 +674,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackArrow: {fileID: 1358102971}
-  attackArrowDefaultPosition: 0
+  attackArrowDefaultPosition: 2
   projectileContainer: {fileID: 884059162}
   projectilePrefab: {fileID: 6113859537689597167, guid: 944cd6337bd346b4bbb3155541a54af5, type: 3}
+  projectileSpeed: 5
   projectileDefaultPosition: 3
   attackInterval: 1
 --- !u!1 &446341910
@@ -2558,7 +2559,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6113859537689597152, guid: 944cd6337bd346b4bbb3155541a54af5, type: 3}
       propertyPath: pSpeed
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6113859537689597166, guid: 944cd6337bd346b4bbb3155541a54af5, type: 3}
       propertyPath: m_RootOrder

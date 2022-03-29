@@ -11,7 +11,7 @@ public class PlayerAttack : MonoBehaviour
     // PROJECTILE
     [SerializeField] private Transform projectileContainer;
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileDefaultPosition;
+    [SerializeField] private float projectileSpeed, projectileDefaultPosition;
     [SerializeField] private float attackInterval;
     private bool canSpawnProjectile;
 
@@ -22,6 +22,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
+        // TESTING
+        Vector3 mousePos = MousePositionToPlayer();
+        Debug.Log("Current Mouse Position: " + mousePos.ToString());
+
         SetPosition(attackArrow, attackArrowDefaultPosition);
         SetRotationToMouse(attackArrow);
 
@@ -38,7 +42,9 @@ public class PlayerAttack : MonoBehaviour
         
         // Set Projectile Movement to Mouse Position
         ProjectileController pController = p.GetComponent<ProjectileController>();
+        pController.playerTransform = transform;
         pController.targetPosition = MousePositionToPlayer();
+        pController.pSpeed = projectileSpeed;
     }
 
     private void SetAttackInterval(float timeWait)
