@@ -29,7 +29,6 @@ public class CoreController : MonoBehaviour
     private void LinearGenerateShape()
     {
         transform.localScale += Vector3.one * coreGenerateVector * (coreGenerateSpeed * Time.deltaTime);
-        Debug.Log(Time.deltaTime.ToString());
     }
 
     private void GenerateVector()

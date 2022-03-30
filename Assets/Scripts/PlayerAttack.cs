@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -42,8 +40,8 @@ public class PlayerAttack : MonoBehaviour
         projectileRb.AddForce(directionToMouse * projectileSpeed, ForceMode2D.Impulse);
 
         // Set Projectile lifetime in seconds after instantiation
-        ProjectileController projectileController = projectile.GetComponent<ProjectileController>();
-        projectileController.lifetimeInSeconds = projectileLifetime;
+        Projectile projectileScript = projectile.GetComponent<Projectile>();
+        projectileScript.lifetimeInSeconds = projectileLifetime;
     }
 
     private void SetAttackInterval(float timeWait)

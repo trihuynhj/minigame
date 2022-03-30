@@ -33,17 +33,18 @@ public class EntityController : MonoBehaviour
 
     private void SpawnEntity()
     {
-        GameObject e = Instantiate(entityPrefab, transform);
+        GameObject entity = Instantiate(entityPrefab, transform);
 
         // SET ENTITY's SPRITE & SPAWN POSITION
         // Must fix entity's position to Game Arena's center point (using GameArea's original position)        
-        e.transform.position = GenerateSpawnPosition();
-        e.transform.localScale = GenerateEntitySize();
+        entity.transform.position = GenerateSpawnPosition();
+        entity.transform.localScale = GenerateEntitySize();
 
-        // SET ENTITY's MOVEMENT
-        EntityMovement entityMovement = e.GetComponent<EntityMovement>();
-        entityMovement.coreTransform = coreTransform;
-        entityMovement.speed = entitySpeed;
+
+        // Set Entity's Movement using Rigidbody2D
+        Rigidbody2D entityRb = entity.GetComponent<Rigidbody2D>(); ;
+        Vector3 directionToCore = coreTransform.position - entity.transform.position;
+        entityRb.AddForce(directionToCore.normalized * entitySpeed, ForceMode2D.Impulse);
     }
 
     private Vector2 GenerateSpawnPosition()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProjectileController : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public float lifetimeInSeconds;
 
@@ -13,7 +13,7 @@ public class ProjectileController : MonoBehaviour
     {
         if (collision.CompareTag("Entity"))
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
     }
 

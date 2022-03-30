@@ -56,9 +56,6 @@ public class GameController : MonoBehaviour
         float playerDistance = Vector3.Distance(player.position, protectShieldController.shieldCenter);
         float protectShieldBound = protectShieldController.shieldRadius + outBuffer;
 
-        Debug.Log(playerDistance.ToString());
-        Debug.Log(protectShieldBound.ToString());
-
         if (playerDistance > protectShieldBound & coroutine == null)
         {
             outOfProtectShield = true;

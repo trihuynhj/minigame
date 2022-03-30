@@ -21,7 +21,11 @@ public class EntityMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Core"))
+        if (collision.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Core"))
         {
             Destroy(gameObject);
         }
