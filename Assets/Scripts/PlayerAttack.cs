@@ -11,27 +11,20 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileLifetime, projectileSpeed, projectileDefaultPosition;
     [SerializeField] private float attackInterval;
-    private bool canSpawnProjectile;
-
-    private void Start()
-    {
-        canSpawnProjectile = true;
-    }
-
+  
     private void Update()
     {
-        SetPosition(attackArrow, attackArrowDefaultPosition);
+        SetPositionToMouse(attackArrow, attackArrowDefaultPosition);
         SetRotationToMouse(attackArrow);
 
-        if (Input.GetMouseButtonDown(0) && canSpawnProjectile) { SpawnProjectile(); }
-        SetAttackInterval(attackInterval);
+        if (Input.GetMouseButtonDown(0)) { SpawnProjectile(); }
     }
 
     private void SpawnProjectile()
     {
         // Instantiate (inside ProjectileContainer) and Set Projectile Initial Position
         GameObject projectile = Instantiate(projectilePrefab, projectileContainer);
-        SetPosition(projectile.transform, projectileDefaultPosition);
+        SetPositionToMouse(projectile.transform, projectileDefaultPosition);
 
         // Set Projectile movement toward Mouse Position via its Rigidbody2D
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
@@ -44,21 +37,7 @@ public class PlayerAttack : MonoBehaviour
         projectileScript.lifetimeInSeconds = projectileLifetime;
     }
 
-    private void SetAttackInterval(float timeWait)
-    {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < timeWait)
-        {
-            canSpawnProjectile = false;
-            elapsedTime += Time.deltaTime;
-        }
-
-        canSpawnProjectile = true;
-
-    } 
-
-    private void SetPosition(Transform target, float targetDefaultPosition)
+    private void SetPositionToMouse(Transform target, float targetDefaultPosition)
     {
         // Convert mouse's screen position to world position
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

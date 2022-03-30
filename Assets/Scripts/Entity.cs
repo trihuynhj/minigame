@@ -1,23 +1,11 @@
 using UnityEngine;
 
-public class EntityMovement : MonoBehaviour
+public class Entity : MonoBehaviour
 {
     public Transform coreTransform;
     
     private Rigidbody2D eRigidbody;
     public float speed;
-
-    private void Start()
-    {
-        eRigidbody = this.GetComponent<Rigidbody2D>();
-        LinearMovement();
-    }
-
-    private void LinearMovement()
-    {
-        Vector3 _destination = coreTransform.position - transform.position;
-        eRigidbody.velocity = _destination.normalized * speed;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

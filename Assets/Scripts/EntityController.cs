@@ -40,7 +40,6 @@ public class EntityController : MonoBehaviour
         entity.transform.position = GenerateSpawnPosition();
         entity.transform.localScale = GenerateEntitySize();
 
-
         // Set Entity's Movement using Rigidbody2D
         Rigidbody2D entityRb = entity.GetComponent<Rigidbody2D>(); ;
         Vector3 directionToCore = coreTransform.position - entity.transform.position;
