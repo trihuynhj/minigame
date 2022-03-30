@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         new Vector2(1f, -1f),
     };
     private Vector2 moveDirection;
-    [SerializeField] private float speed;
+    [SerializeField] private float moveForce;
 
     private void Awake()
     {
@@ -38,8 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Vector2 directionLength = moveDirection.normalized;
-            rb.velocity = directionLength * speed * Time.deltaTime;
+            Vector2 directionVector = moveDirection.normalized;
+            rb.velocity = directionVector * moveForce * Time.deltaTime;
         }
     }
 

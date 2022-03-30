@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class CoreController : MonoBehaviour
 {
-    private CircleCollider2D coreCollider;
-
     [SerializeField] private float coreInitialScale;
     [SerializeField] private float coreMinSize, coreMaxSize;
     [SerializeField] private float coreGenerateSpeed;
@@ -14,8 +12,6 @@ public class CoreController : MonoBehaviour
 
     private void Start()
     {
-        coreCollider = GetComponent<CircleCollider2D>();
-
         transform.localScale = Vector3.one * coreInitialScale;
         coreGenerateVector = 1;
     }
