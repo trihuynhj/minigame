@@ -7,9 +7,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float attackArrowDefaultPosition;
 
     // PROJECTILE
+    [SerializeField] private float projectileDefaultPosition;
     [SerializeField] private Transform projectileContainer;
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileLifetime, projectileSpeed, projectileDefaultPosition;
+    [SerializeField] private float projectileLifetime, projectileSpeed;
     [SerializeField] private float attackInterval;
   
     private void Update()
