@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     private float decrementInterval;
     [SerializeField] private float outBuffer;
 
+    private bool shieldRenderDone = false;
+
     private void Start()
     {
         gameLevel = 0;
@@ -28,6 +30,8 @@ public class GameController : MonoBehaviour
 
         outOfProtectShield = false;
         decrementInterval = 1f;
+
+        Invoke("CheckShieldRender", .6f);
     }
 
     private void Update()
@@ -35,6 +39,11 @@ public class GameController : MonoBehaviour
         CheckOutOfBound();
 
         scoreText.text = vitalityPoint.ToString();
+    }
+
+    private void CheckShieldRender()
+    {
+        shieldRenderDone = true;
     }
 
     // Assign Coroutine so that it only runs once in Update()
@@ -54,6 +63,8 @@ public class GameController : MonoBehaviour
     // Check if Player is out of ProtectShield, if so start the Coroutine to decrement vitalityPoint
     private void CheckOutOfBound()
     {
+        if (!shieldRenderDone) { return; }
+
         float playerDistance = Vector3.Distance(player.position, protectShieldController.shieldCenter);
         float protectShieldBound = protectShieldController.shieldRadius + outBuffer;
 

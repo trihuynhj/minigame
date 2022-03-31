@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class ProtectShieldController : MonoBehaviour
 {
+    public bool shieldRenderDone;
+
     private LineRenderer shieldRenderer;
     private EdgeCollider2D shieldCollider;
 
@@ -30,9 +32,9 @@ public class ProtectShieldController : MonoBehaviour
     private void Start()
     {
         shieldGenerateVector = true;
-        InvokeRepeating("RenderShield", .5f, shieldGenerateInterval);
-
         shieldRadius = 5f;
+
+        InvokeRepeating("RenderShield", .5f, shieldGenerateInterval);
     }
 
     private void Update()
