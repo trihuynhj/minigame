@@ -1012,10 +1012,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - EntityController (SpawnPosition, SpawnSize, etc.)
-
-    -
-    GameController (Level)'
+    - GameController (Level, Progress Bar, etc.)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0

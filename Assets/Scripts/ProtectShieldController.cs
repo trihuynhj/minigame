@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class ProtectShieldController : MonoBehaviour
 {
-    public bool shieldRenderDone;
-
     private LineRenderer shieldRenderer;
     private EdgeCollider2D shieldCollider;
 
