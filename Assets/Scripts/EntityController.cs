@@ -49,6 +49,10 @@ public class EntityController : MonoBehaviour
             Vector3 directionToCore = coreTransform.position - entity.transform.position;
             entityRb.AddForce(directionToCore.normalized * entitySpeed, ForceMode2D.Impulse);
 
+            // Plug in GameController script to Entity script
+            Entity entityScript = entity.GetComponent<Entity>();
+            entityScript.gameController = gameController;
+
             yield return new WaitForSeconds(entitySpawnInterval);
         }  
     }

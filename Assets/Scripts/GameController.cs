@@ -13,8 +13,8 @@ public class GameController : MonoBehaviour
     public int gameLevel;
 
     // Score that the Player gains/loses
-    private float vitalityPoint;
-    private float nextLevelPoint;
+    public float vitalityPoint;
+    public float nextLevelPoint;
 
     public bool outOfProtectShield;
     private float decrementInterval;
@@ -33,6 +33,8 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         CheckOutOfBound();
+
+        scoreText.text = vitalityPoint.ToString();
     }
 
     // Assign Coroutine so that it only runs once in Update()
@@ -43,7 +45,6 @@ public class GameController : MonoBehaviour
         if (outOfProtectShield)
         {
             vitalityPoint--;
-            scoreText.text = vitalityPoint.ToString();
             yield return new WaitForSeconds(decrementInterval);
 
             coroutine = null;
