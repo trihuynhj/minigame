@@ -42,7 +42,7 @@ public class EntityController : MonoBehaviour
             // SET ENTITY's SPRITE & SPAWN POSITION
             // Must fix entity's position to Game Arena's center point (using GameArea's original position)        
             entity.transform.position = GenerateSpawnPosition();
-            entity.transform.localScale = RandomGenerateEntitySize();
+            entity.transform.localScale = GenerateEntitySize();
 
             // Set Entity's Movement using Rigidbody2D
             Rigidbody2D entityRb = entity.GetComponent<Rigidbody2D>(); ;
@@ -62,10 +62,9 @@ public class EntityController : MonoBehaviour
         return randomPoint;
     }
 
-    private Vector3 RandomGenerateEntitySize()
+    private Vector3 GenerateEntitySize()
     {
         Vector3 _entitySize = Vector3.one;
-        //_entitySize += Vector3.one * Random.Range(1f, 100f) / 10f;
 
         return _entitySize;
     }

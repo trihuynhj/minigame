@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 directionToMouse = mouseWorldPosition - projectile.transform.position;
-        projectileRb.AddForce(directionToMouse * projectileSpeed, ForceMode2D.Impulse);
+        projectileRb.AddForce(directionToMouse.normalized * projectileSpeed, ForceMode2D.Impulse);
 
         // Set Projectile lifetime in seconds after instantiation
         Projectile projectileScript = projectile.GetComponent<Projectile>();
