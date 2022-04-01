@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
-    [SerializeField] private Slider progressBar;
 
     [SerializeField] private Transform player;
     [SerializeField] private ProtectShieldController protectShieldController;
