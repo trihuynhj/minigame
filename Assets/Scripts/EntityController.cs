@@ -19,7 +19,7 @@ public class EntityController : MonoBehaviour
     private void Start()
     {
         // Reference the current level from GameController script
-        currentLevel = gameController.gameLevel;
+        currentLevel = gameController.currentLevel;
     }
 
     private void Update()

@@ -8,12 +8,12 @@ public class Entity : MonoBehaviour
     {
         if (collision.CompareTag("Projectile"))
         {
-            gameController.vitalityPoint++;
+            gameController.currentPoint++;
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Core"))
         {
-            gameController.vitalityPoint--;
+            gameController.currentPoint--;
             Destroy(gameObject);
         }
     }

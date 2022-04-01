@@ -5,28 +5,48 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private Slider progressBar;
 
     [SerializeField] private Transform player;
     [SerializeField] private ProtectShieldController protectShieldController;
 
-    // Level that determines game progression, in range of 0 to 16
-    public int gameLevel;
+    // Fields that indicate game progression
+    public int currentLevel;
+    public float currentPoint;
 
-    // Score that the Player gains/loses
-    public float vitalityPoint;
-    public float nextLevelPoint;
+    // Points corresponding to levels, values are currently only placeholders
+    private float[] pointBrackets = new float[16]
+    {
+        100f,
+        200f,
+        300f,
+        400f,
+        500f,
+        600f,
+        700f,
+        800f,
+        900f,
+        1000f,
+        1100f,
+        1200f,
+        1300f,
+        1400f,
+        1500f,
+        1600f
+    };
 
     public bool outOfProtectShield;
     private float decrementInterval;
     [SerializeField] private float outBuffer;
 
+    // To trigger the CheckOutOfBound only AFTER the shield has been rendered
     private bool shieldRenderDone = false;
 
     private void Start()
     {
-        gameLevel = 0;
+        currentLevel = 0;
 
-        vitalityPoint = 100f;
+        currentPoint = 100f;
 
         outOfProtectShield = false;
         decrementInterval = 1f;
@@ -38,7 +58,7 @@ public class GameController : MonoBehaviour
     {
         CheckOutOfBound();
 
-        scoreText.text = vitalityPoint.ToString();
+        scoreText.text = currentPoint.ToString();
     }
 
     private void CheckShieldRender()
@@ -53,7 +73,7 @@ public class GameController : MonoBehaviour
     {
         if (outOfProtectShield)
         {
-            vitalityPoint--;
+            currentPoint--;
             yield return new WaitForSeconds(decrementInterval);
 
             coroutine = null;
