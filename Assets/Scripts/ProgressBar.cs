@@ -7,6 +7,11 @@ public class ProgressBar : MonoBehaviour
 {
     public Slider slider;
 
+    public void SetMaxPoint(int maxPoint)
+    {
+        slider.maxValue = maxPoint;
+    }
+
     public void SetPoint(int point)
     {
         slider.value = point;

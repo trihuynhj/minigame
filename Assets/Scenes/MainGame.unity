@@ -808,10 +808,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1455869866}
+  progressBar: {fileID: 1829282252}
   player: {fileID: 408322707}
   protectShieldController: {fileID: 815577694}
   currentLevel: 0
   currentPoint: 0
+  currentMaxPoint: 0
   outOfProtectShield: 0
   outBuffer: 0.8
 --- !u!1 &519420028
@@ -2529,6 +2531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1829282250}
   - component: {fileID: 1829282251}
+  - component: {fileID: 1829282252}
   m_Layer: 5
   m_Name: ProgressBar
   m_TagString: Untagged
@@ -2609,6 +2612,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1829282252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829282249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d61cddf261e944da7b4911aefb023e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1829282251}
 --- !u!1 &1873780223
 GameObject:
   m_ObjectHideFlags: 0

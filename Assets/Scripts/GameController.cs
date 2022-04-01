@@ -5,33 +5,33 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private ProgressBar progressBar;
 
     [SerializeField] private Transform player;
     [SerializeField] private ProtectShieldController protectShieldController;
 
     // Fields that indicate game progression
-    public int currentLevel;
-    public float currentPoint;
+    public int currentLevel, currentPoint, currentMaxPoint;
 
     // Points corresponding to levels, values are currently only placeholders
-    private float[] pointBrackets = new float[16]
+    private int[] pointBrackets = new int[16]
     {
-        100f,
-        200f,
-        300f,
-        400f,
-        500f,
-        600f,
-        700f,
-        800f,
-        900f,
-        1000f,
-        1100f,
-        1200f,
-        1300f,
-        1400f,
-        1500f,
-        1600f
+        200,
+        400,
+        600,
+        900,
+        1200,
+        1500,
+        1800,
+        2000,
+        2500,
+        3000,
+        4000,
+        5500,
+        7000,
+        9000,
+        1100,
+        15000
     };
 
     public bool outOfProtectShield;
@@ -44,8 +44,12 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         currentLevel = 0;
+        currentPoint = 100;
+        currentMaxPoint = pointBrackets[currentLevel];
 
-        currentPoint = 100f;
+        // Set ProgressBar's initial value
+        progressBar.SetMaxPoint(currentMaxPoint);
+        progressBar.SetPoint(currentPoint);
 
         outOfProtectShield = false;
         decrementInterval = 1f;
@@ -56,7 +60,7 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         CheckOutOfBound();
-
+        progressBar.SetPoint(currentPoint);
         scoreText.text = currentPoint.ToString();
     }
 
@@ -72,7 +76,9 @@ public class GameController : MonoBehaviour
     {
         if (outOfProtectShield)
         {
+            // Update currentPoint and ProgressBar
             currentPoint--;
+
             yield return new WaitForSeconds(decrementInterval);
 
             coroutine = null;
