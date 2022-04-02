@@ -4,48 +4,54 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private Text scoreText;
-    [SerializeField] private ProgressBar progressBar;
-
+    // PLAYER
     [SerializeField] private Transform player;
     [SerializeField] private ProtectShieldController protectShieldController;
 
-    // Fields that indicate game progression
+    // PROGRESS BAR
+    [SerializeField] private Text progressText;
+    [SerializeField] private ProgressBar progressBar;
+
+    // LEVEL BAR
+    [SerializeField] private Text levelText;
+
+    // GAME PROGRESSION (PUBLIC FIELDS)
     public int currentLevel, currentPoint, currentMaxPoint;
 
-    // Points corresponding to levels, values are currently only placeholders
-    private int[] pointBrackets = new int[16]
+    // LEVEL BRACKETS (TOTAL OF 16 LEVELS EXCLUDING LEVEL ZERO)
+    private int[] levelBrackets = new int[17]
     {
-        200,
-        400,
-        600,
-        900,
-        1200,
-        1500,
-        1800,
-        2000,
-        2500,
-        3000,
-        4000,
-        5500,
-        7000,
-        9000,
-        1100,
-        15000
+        200,    // LVL 0*
+        400,    // LVL 1
+        600,    // LVL 2
+        900,    // LVL 3
+        1200,   // LVL 4
+        1500,   // LVL 5
+        1800,   // LVL 6
+        2000,   // LVL 7
+        2500,   // LVL 8
+        3000,   // LVL 9
+        4000,   // LVL 10
+        5500,   // LVL 11
+        7000,   // LVL 12
+        9000,   // LVL 13
+        1100,   // LVL 14
+        15000,  // LVL 15
+        20000   // LVL 16
     };
 
     public bool outOfProtectShield;
     private float decrementInterval;
     [SerializeField] private float outBuffer;
 
-    // To trigger the CheckOutOfBound only AFTER the shield has been rendered
+    // To trigger the UpdateCurrentPointByProtectShield only AFTER the shield has been rendered
     private bool shieldRenderDone = false;
 
     private void Start()
     {
         currentLevel = 0;
         currentPoint = 100;
-        currentMaxPoint = pointBrackets[currentLevel];
+        currentMaxPoint = levelBrackets[currentLevel];
 
         // Set ProgressBar's initial value
         progressBar.SetMaxPoint(currentMaxPoint);
@@ -59,9 +65,32 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        CheckOutOfBound();
+        UpdateCurrentPointByProtectShield();
         progressBar.SetPoint(currentPoint);
-        scoreText.text = currentPoint.ToString();
+
+        // DISPLAY FOR TESTING
+        progressText.text = currentPoint.ToString();
+        levelText.text = currentLevel.ToString();
+
+        UpdateCurrentLevel();
+    }
+
+    private void UpdateCurrentLevel()
+    {
+        if (currentPoint < levelBrackets[0]) 
+        { 
+            currentLevel = 0;
+            return;
+        
+        }
+
+        for (int i = 0; i < levelBrackets.Length; i++)
+        {
+            if (currentPoint >= levelBrackets[i] && currentPoint <= levelBrackets[i+1])
+            {
+                currentLevel = i;
+            }
+        }
     }
 
     private void CheckShieldRender()
@@ -72,22 +101,22 @@ public class GameController : MonoBehaviour
     // Assign Coroutine so that it only runs once in Update()
     private IEnumerator coroutine = null;
 
-    public IEnumerator ScoreDecrementByShieldBound()
+    public IEnumerator CheckShieldBound()
     {
         if (outOfProtectShield)
         {
             // Update currentPoint and ProgressBar
             currentPoint--;
-
             yield return new WaitForSeconds(decrementInterval);
 
             coroutine = null;
         }
     }
 
-    // Check if Player is out of ProtectShield, if so start the Coroutine to decrement vitalityPoint
-    private void CheckOutOfBound()
+    // Check if Player is out of ProtectShield, if so start the Coroutine to decrement currentPoint
+    private void UpdateCurrentPointByProtectShield()
     {
+        // Make sure to not update currentPoint before ProtectShield is rendered
         if (!shieldRenderDone) { return; }
 
         float playerDistance = Vector3.Distance(player.position, protectShieldController.shieldCenter);
@@ -97,7 +126,7 @@ public class GameController : MonoBehaviour
         {
             outOfProtectShield = true;
 
-            coroutine = ScoreDecrementByShieldBound();
+            coroutine = CheckShieldBound();
             StartCoroutine(coroutine);
         }
         else
