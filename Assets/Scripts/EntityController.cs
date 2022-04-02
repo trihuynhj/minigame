@@ -68,7 +68,7 @@ public class EntityController : MonoBehaviour
 
     private Vector3 GenerateEntitySize()
     {
-        Vector3 _entitySize = Vector3.one;
+        Vector3 _entitySize = Vector3.one * Random.Range(1f, 5f);
 
         return _entitySize;
     }

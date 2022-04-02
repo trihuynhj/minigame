@@ -77,18 +77,13 @@ public class GameController : MonoBehaviour
 
     private void UpdateCurrentLevel()
     {
-        if (currentPoint < levelBrackets[0]) 
-        { 
-            currentLevel = 0;
-            return;
-        
-        }
+        if (currentPoint < 200) { return; }
 
         for (int i = 0; i < levelBrackets.Length; i++)
         {
-            if (currentPoint >= levelBrackets[i] && currentPoint <= levelBrackets[i+1])
+            if (currentPoint >= levelBrackets[i] && currentPoint <= levelBrackets[i + 1])
             {
-                currentLevel = i;
+                currentLevel = i + 1;
             }
         }
     }
