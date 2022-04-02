@@ -7,8 +7,6 @@ public class EntityController : MonoBehaviour
     [SerializeField] private Transform gameArena;
     [SerializeField] private Transform coreTransform;
 
-    private int currentLevel;
-
     private int entityNumber;
     private bool entityIsEnemy;
     private string[] entityType;
@@ -18,8 +16,7 @@ public class EntityController : MonoBehaviour
 
     private void Start()
     {
-        // Reference the current level from GameController script
-        currentLevel = gameController.currentLevel;
+
     }
 
     private void Update()

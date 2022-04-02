@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class LevelTick : MonoBehaviour
 {
     [SerializeField] private GameController gameController;
-    private int currentLevel;
 
     private float bottomWorldPosition = 0f;
     private float topWorldPosition = 1050f;
@@ -15,24 +14,17 @@ public class LevelTick : MonoBehaviour
 
     private void Start()
     {
-        currentLevel = gameController.currentLevel;
-
         traverseDistanct = (topWorldPosition - bottomWorldPosition) / 16f;
     }
 
     private void Update()
-    {
-        //Debug.Log("TICK POSITION: " + transform.position.ToString());
-
-        currentLevel = gameController.currentLevel;
-        
+    {        
         if (Input.GetKeyDown(KeyCode.M)) { TickMovement(); }
     }
 
     private void TickMovement()
     {
-        float designatedYPos = traverseDistanct * currentLevel;
-        Debug.Log("Current designatedYPos: " + designatedYPos.ToString());
+        float designatedYPos = traverseDistanct * gameController.currentLevel;
         StartCoroutine(Traverse(designatedYPos));
     }
 
@@ -41,7 +33,6 @@ public class LevelTick : MonoBehaviour
         while (transform.position.y < _designatedYPos)
         {
             transform.position += new Vector3(0, traverseSpeed, 0);
-            Debug.Log("TICK POSITION: " + transform.position.ToString());
             yield return null;
         }
     }
