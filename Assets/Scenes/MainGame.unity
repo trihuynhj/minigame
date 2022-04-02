@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: -500}
+  m_AnchoredPosition: {x: -700, y: -520}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15520971
@@ -182,7 +182,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 28
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -200,7 +200,9 @@ MonoBehaviour:
     "P" = moveVector
 
     "G"
-    = forceVector'
+    = forceVector
+
+    "M" = update movement of Level Ticks'
 --- !u!222 &15520972
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1091,7 +1093,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - GameController (LevelBar, ProgressBar, etc.)'
+    - ForceField (Patrol, behaviors according to levels,
+    etc.)
+
+    - ProtectShield (behaviours according to levels etc.)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2894,8 +2899,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -850, y: 0}
-  m_SizeDelta: {x: 700, y: 30}
+  m_AnchoredPosition: {x: -900, y: 0}
+  m_SizeDelta: {x: 700, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1829282251
 MonoBehaviour:
