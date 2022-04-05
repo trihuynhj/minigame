@@ -36,8 +36,8 @@ public class GameController : MonoBehaviour
         7000,   // LVL 12
         9000,   // LVL 13
         1100,   // LVL 14
-        15000,  // LVL 15
-        20000   // LVL 16
+        1500,  // LVL 15
+        2000   // LVL 16
     };
 
     public bool outOfProtectShield;
@@ -66,7 +66,10 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         UpdateCurrentPointByProtectShield();
+
+        // SET PROGRESS BAR
         progressBar.SetPoint(currentPoint);
+        progressBar.SetMaxPoint(currentMaxPoint);
 
         // DISPLAY FOR TESTING
         progressText.text = currentPoint.ToString();
@@ -84,6 +87,7 @@ public class GameController : MonoBehaviour
             if (currentPoint >= levelBrackets[i] && currentPoint <= levelBrackets[i + 1])
             {
                 currentLevel = i + 1;
+                currentMaxPoint = levelBrackets[currentLevel];
             }
         }
     }
