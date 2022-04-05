@@ -1255,8 +1255,7 @@ MonoBehaviour:
   shieldMaxRadius: 10
   shieldGenerateInterval: 0.01
   shieldGenerateSpeed: 0.01
-  offsetX: 0
-  offsetY: 0
+  offset: {x: 0, y: 0, z: 0}
   shieldCenter: {x: 0, y: 0}
 --- !u!68 &815577695
 EdgeCollider2D:

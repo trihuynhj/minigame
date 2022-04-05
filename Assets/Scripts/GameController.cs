@@ -35,9 +35,9 @@ public class GameController : MonoBehaviour
         5500,   // LVL 11
         7000,   // LVL 12
         9000,   // LVL 13
-        1100,   // LVL 14
-        1500,  // LVL 15
-        2000   // LVL 16
+        11000,  // LVL 14
+        15000,  // LVL 15
+        20000   // LVL 16
     };
 
     public bool outOfProtectShield;

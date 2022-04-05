@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class ProtectShieldController : MonoBehaviour
@@ -38,11 +39,13 @@ public class ProtectShieldController : MonoBehaviour
     private void Update()
     {
         shieldCenter = transform.position + offset;
+        Debug.Log("SHIELD CENTER POSITION: " + shieldCenter.ToString());
     }
 
-    private void ShieldMovement()
+    // NEEDS IMPLEMENTING
+    private IEnumerator ShieldMovement()
     {
-
+        yield return new WaitForSeconds(shieldGenerateInterval);
     }
 
     private void RenderShield()
