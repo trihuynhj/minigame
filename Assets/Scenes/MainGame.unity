@@ -1093,10 +1093,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - ForceField (Patrol, behaviors according to levels,
-    etc.)
-
-    - ProtectShield (behaviours according to levels etc.)'
+    - ProtectShield (ShieldMovement method)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
