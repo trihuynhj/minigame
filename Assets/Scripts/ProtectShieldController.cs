@@ -13,7 +13,7 @@ public class ProtectShieldController : MonoBehaviour
     [SerializeField] private int shieldPoints;
     [SerializeField] private float shieldMinRadius, shieldMaxRadius;
     [SerializeField] private float shieldGenerateInterval, shieldGenerateSpeed;
-    [SerializeField] private float offsetX, offsetY;
+    [SerializeField] private Vector3 offset;
     
     // Determines shield grow (true) or shrink (false)
     private bool shieldGenerateVector;
@@ -37,7 +37,12 @@ public class ProtectShieldController : MonoBehaviour
 
     private void Update()
     {
-        shieldCenter = new Vector2(transform.position.x + offsetX, transform.position.y + offsetY);
+        shieldCenter = transform.position + offset;
+    }
+
+    private void ShieldMovement()
+    {
+
     }
 
     private void RenderShield()
@@ -72,8 +77,8 @@ public class ProtectShieldController : MonoBehaviour
             // Above are only the scale of the circle
             // To get the actual size of the circle, multiple them by the radius
             // offsetX & offsetY to make the Shield dynamically move
-            float x = xScaled * radius + offsetX;
-            float y = yScaled * radius + offsetY;
+            float x = xScaled * radius + offset.x;
+            float y = yScaled * radius + offset.y;
 
             // Add current point to list of EdgeCollider2D
             points.Add(new Vector2(x, y));

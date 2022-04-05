@@ -18,6 +18,7 @@ public class LevelTick : MonoBehaviour
 
     private void Update()
     {        
+        // TESTING PURPOSE
         if (Input.GetKeyDown(KeyCode.M)) { TickMovement(); }
     }
 
