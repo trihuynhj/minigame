@@ -18,8 +18,8 @@ public class ProtectShieldController : MonoBehaviour
     // Determines shield grow (true) or shrink (false)
     private bool shieldGenerateVector;
 
-    // Center of the Protect Shield (in context of World Space, not relative to its parent object)
-    [HideInInspector] public Vector3 shieldCenter;
+    // Initial position of ProtectShield, same as center of game arena
+    [HideInInspector] public Vector3 shieldInitialCenterPosition;
 
     private Vector3 randomSpot = new Vector3(-2f, 17.5f, 0f);
 
@@ -35,7 +35,7 @@ public class ProtectShieldController : MonoBehaviour
 
         // Initially set both randomSpot and shieldCenter to the center of game arena
         //randomSpot = transform.position;
-        shieldCenter = transform.position;
+        shieldInitialCenterPosition = transform.position;
 
         InvokeRepeating("RenderShield", .5f, shieldGenerateInterval);
     }
@@ -48,6 +48,7 @@ public class ProtectShieldController : MonoBehaviour
         //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //Debug.Log("MOUSE WORLD POSITION: " + mouseWorldPosition.ToString());
 
+        // Press O to move shield towards randomSpot (TETING PURPOSE)
         if (Input.GetKeyDown(KeyCode.O))
         {
             StartCoroutine(ShieldMovement());
