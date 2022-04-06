@@ -1096,7 +1096,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - ProtectShield (ShieldMovement method)'
+    - ProtectShield (consider shieldMaxRadius in RandomSpot,
+    implement currentLevel in ProtectShield)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
