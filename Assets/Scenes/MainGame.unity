@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: -520}
+  m_AnchoredPosition: {x: -700, y: -500}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15520971
@@ -202,7 +202,10 @@ MonoBehaviour:
     "G"
     = forceVector
 
-    "M" = update movement of Level Ticks'
+    "M" = update movement of Level Ticks
+
+    "O" = ShieldMovement
+    to a randomSpot'
 --- !u!222 &15520972
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -118,7 +118,7 @@ public class GameController : MonoBehaviour
         // Make sure to not update currentPoint before ProtectShield is rendered
         if (!shieldRenderDone) { return; }
 
-        float playerDistance = Vector3.Distance(player.position, protectShieldController.shieldCenter);
+        float playerDistance = Vector3.Distance(player.position, protectShieldController.transform.position);
         float protectShieldBound = protectShieldController.shieldRadius + outBuffer;
 
         if (playerDistance > protectShieldBound & coroutine == null)

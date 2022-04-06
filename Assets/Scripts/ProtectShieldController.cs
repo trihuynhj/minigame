@@ -60,7 +60,7 @@ public class ProtectShieldController : MonoBehaviour
         {
             Vector3 currentPosition = transform.position;
             transform.position = Vector3.MoveTowards(currentPosition, randomSpot, shieldMoveSpeed * Time.deltaTime);
-            yield return new WaitForSeconds(shieldGenerateInterval);
+            yield return new WaitForSeconds(0.001f);
         } 
     }
 
