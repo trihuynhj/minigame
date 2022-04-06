@@ -11,17 +11,15 @@ public class ProtectShieldController : MonoBehaviour
     [SerializeField] private Material shieldMaterial;
 
     [SerializeField] public float shieldRadius;
-    [SerializeField] private int shieldPoints;
+    [SerializeField] private int shieldRenderPoints;
     [SerializeField] private float shieldMinRadius, shieldMaxRadius;
-    [SerializeField] private float shieldGenerateInterval, shieldGenerateSpeed, shieldMoveSpeed;
+    [SerializeField] private float shieldGenerateInterval, shieldGenerateSpeed;
+    [SerializeField] private float shieldMoveRange, shieldMoveSpeed;
     
     // Determines shield grow (true) or shrink (false)
     private bool shieldGenerateVector;
-
     // Initial position of ProtectShield, same as center of game arena
     [HideInInspector] public Vector3 shieldInitialCenterPosition;
-
-    private Vector3 randomSpot = new Vector3(-2f, 17.5f, 0f);
 
     private void Awake()
     {
@@ -42,33 +40,43 @@ public class ProtectShieldController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("SHIELD CENTER POSITION: " + transform.position.ToString());
+        //Debug.Log("SHIELD CENTER POSITION: " + transform.position.ToString());
 
         // MOUSE WORLD POSITION
         //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //Debug.Log("MOUSE WORLD POSITION: " + mouseWorldPosition.ToString());
 
         // Press O to move shield towards randomSpot (TETING PURPOSE)
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.O) && coroutine_ShieldMovement == null)
         {
-            StartCoroutine(ShieldMovement());
+            coroutine_ShieldMovement = ShieldMovement();
+            StartCoroutine(coroutine_ShieldMovement);
         }
     }
 
     private IEnumerator ShieldMovement()
     {
-        while (Vector3.Distance(transform.position, randomSpot) > 0.001f)
+        // Generate a randomSpot within shieldMoveRange
+        // also take into account shieldMaxRadius
+        Vector3 randomSpot = shieldInitialCenterPosition + Random.insideUnitSphere * shieldMoveRange;
+        randomSpot.z = 0f;
+        Debug.Log("RANDOM SPOT: " + randomSpot.ToString());
+
+        while (Vector3.Distance(transform.position, randomSpot) > 0.01f)
         {
             Vector3 currentPosition = transform.position;
             transform.position = Vector3.MoveTowards(currentPosition, randomSpot, shieldMoveSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.001f);
-        } 
+        }
+
+        coroutine_ShieldMovement = null;
     }
+    private IEnumerator coroutine_ShieldMovement = null;
 
     private void RenderShield()
     {
         shieldRadius = GenerateRadius(shieldMinRadius, shieldMaxRadius, shieldGenerateSpeed);
-        GenerateShapeAndCollision(shieldPoints, shieldRadius);
+        GenerateShapeAndCollision(shieldRenderPoints, shieldRadius);
     }
 
     private void GenerateShapeAndCollision(int steps, float radius)

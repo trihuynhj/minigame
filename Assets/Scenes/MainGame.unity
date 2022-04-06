@@ -1250,13 +1250,14 @@ MonoBehaviour:
   gameController: {fileID: 480171841}
   shieldMaterial: {fileID: 0}
   shieldRadius: 5
-  shieldPoints: 300
+  shieldRenderPoints: 300
   shieldMinRadius: 6
   shieldMaxRadius: 10
   shieldGenerateInterval: 0.01
   shieldGenerateSpeed: 0.01
-  shieldMoveSpeed: 2
-  shieldCenter: {x: 0, y: 0, z: 0}
+  shieldMoveRange: 20
+  shieldMoveSpeed: 15
+  shieldInitialCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!68 &815577695
 EdgeCollider2D:
   m_ObjectHideFlags: 0
