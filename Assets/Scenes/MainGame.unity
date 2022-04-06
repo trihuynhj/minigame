@@ -1246,14 +1246,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameController: {fileID: 480171841}
   shieldMaterial: {fileID: 0}
-  shieldRadius: 0
+  shieldRadius: 5
   shieldPoints: 300
   shieldMinRadius: 6
   shieldMaxRadius: 10
   shieldGenerateInterval: 0.01
   shieldGenerateSpeed: 0.01
-  offset: {x: 0, y: 0, z: 0}
-  shieldCenter: {x: 0, y: 0}
+  shieldMoveSpeed: 2
+  shieldCenter: {x: 0, y: 0, z: 0}
 --- !u!68 &815577695
 EdgeCollider2D:
   m_ObjectHideFlags: 0

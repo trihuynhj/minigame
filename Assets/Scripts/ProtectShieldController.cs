@@ -14,7 +14,6 @@ public class ProtectShieldController : MonoBehaviour
     [SerializeField] private int shieldPoints;
     [SerializeField] private float shieldMinRadius, shieldMaxRadius;
     [SerializeField] private float shieldGenerateInterval, shieldGenerateSpeed, shieldMoveSpeed;
-    [SerializeField] private Vector3 offset;
     
     // Determines shield grow (true) or shrink (false)
     private bool shieldGenerateVector;
@@ -22,7 +21,7 @@ public class ProtectShieldController : MonoBehaviour
     // Center of the Protect Shield (in context of World Space, not relative to its parent object)
     [HideInInspector] public Vector3 shieldCenter;
 
-    private Vector3 randomPosition = new Vector3(-2f, 17.5f, 0f);
+    private Vector3 randomSpot = new Vector3(-2f, 17.5f, 0f);
 
     private void Awake()
     {
@@ -33,15 +32,17 @@ public class ProtectShieldController : MonoBehaviour
     private void Start()
     {
         shieldGenerateVector = true;
-        shieldRadius = 5f;
+
+        // Initially set both randomSpot and shieldCenter to the center of game arena
+        //randomSpot = transform.position;
+        shieldCenter = transform.position;
 
         InvokeRepeating("RenderShield", .5f, shieldGenerateInterval);
     }
 
     private void Update()
     {
-        shieldCenter = transform.position + offset;
-        Debug.Log("SHIELD CENTER POSITION: " + shieldCenter.ToString());
+        Debug.Log("SHIELD CENTER POSITION: " + transform.position.ToString());
 
         // MOUSE WORLD POSITION
         //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -55,10 +56,10 @@ public class ProtectShieldController : MonoBehaviour
 
     private IEnumerator ShieldMovement()
     {
-        while (Vector3.Distance(shieldCenter, randomPosition) > 0.001f)
+        while (Vector3.Distance(transform.position, randomSpot) > 0.001f)
         {
             Vector3 currentPosition = transform.position;
-            transform.position = Vector3.MoveTowards(currentPosition, randomPosition, shieldMoveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(currentPosition, randomSpot, shieldMoveSpeed * Time.deltaTime);
             yield return new WaitForSeconds(shieldGenerateInterval);
         } 
     }
@@ -95,8 +96,8 @@ public class ProtectShieldController : MonoBehaviour
             // Above are only the scale of the circle
             // To get the actual size of the circle, multiple them by the radius
             // offsetX & offsetY to make the Shield dynamically move
-            float x = xScaled * radius + offset.x;
-            float y = yScaled * radius + offset.y;
+            float x = xScaled * radius;
+            float y = yScaled * radius;
 
             // Add current point to list of EdgeCollider2D
             points.Add(new Vector2(x, y));
