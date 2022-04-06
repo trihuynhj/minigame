@@ -13,14 +13,16 @@ public class ProtectShieldController : MonoBehaviour
     [SerializeField] public float shieldRadius;
     [SerializeField] private int shieldPoints;
     [SerializeField] private float shieldMinRadius, shieldMaxRadius;
-    [SerializeField] private float shieldGenerateInterval, shieldGenerateSpeed;
+    [SerializeField] private float shieldGenerateInterval, shieldGenerateSpeed, shieldMoveSpeed;
     [SerializeField] private Vector3 offset;
     
     // Determines shield grow (true) or shrink (false)
     private bool shieldGenerateVector;
 
     // Center of the Protect Shield (in context of World Space, not relative to its parent object)
-    [HideInInspector] public Vector2 shieldCenter;
+    [HideInInspector] public Vector3 shieldCenter;
+
+    private Vector3 randomPosition = new Vector3(-2f, 17.5f, 0f);
 
     private void Awake()
     {
@@ -40,12 +42,25 @@ public class ProtectShieldController : MonoBehaviour
     {
         shieldCenter = transform.position + offset;
         Debug.Log("SHIELD CENTER POSITION: " + shieldCenter.ToString());
+
+        // MOUSE WORLD POSITION
+        //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Debug.Log("MOUSE WORLD POSITION: " + mouseWorldPosition.ToString());
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            StartCoroutine(ShieldMovement());
+        }
     }
 
-    // NEEDS IMPLEMENTING
     private IEnumerator ShieldMovement()
     {
-        yield return new WaitForSeconds(shieldGenerateInterval);
+        while (Vector3.Distance(shieldCenter, randomPosition) > 0.001f)
+        {
+            Vector3 currentPosition = transform.position;
+            transform.position = Vector3.MoveTowards(currentPosition, randomPosition, shieldMoveSpeed * Time.deltaTime);
+            yield return new WaitForSeconds(shieldGenerateInterval);
+        } 
     }
 
     private void RenderShield()
