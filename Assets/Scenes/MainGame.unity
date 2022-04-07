@@ -616,7 +616,7 @@ Transform:
   m_GameObject: {fileID: 408322704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 1083093160}
   - {fileID: 1358102971}
@@ -1252,11 +1252,11 @@ MonoBehaviour:
   shieldMaterial: {fileID: 0}
   shieldRadius: 5
   shieldRenderPoints: 300
-  shieldMinRadius: 6
-  shieldMaxRadius: 10
+  shieldMinRadius: 2
+  shieldMaxRadius: 4
   shieldGenerateInterval: 0.01
   shieldGenerateSpeed: 0.01
-  shieldMoveRange: 20
+  shieldMoveRange: 15
   shieldMoveSpeed: 15
   shieldInitialCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!68 &815577695
