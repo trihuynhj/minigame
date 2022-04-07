@@ -1256,7 +1256,7 @@ MonoBehaviour:
   shieldMaxRadius: 4
   shieldGenerateInterval: 0.01
   shieldGenerateSpeed: 0.01
-  shieldMoveRange: 15
+  shieldMoveRange: 16
   shieldMoveSpeed: 15
   shieldInitialCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!68 &815577695
@@ -1378,9 +1378,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coreInitialScale: 5
-  coreMinSize: 5
-  coreMaxSize: 6
-  coreGenerateSpeed: 0.5
+  coreMinSize: 2
+  coreMaxSize: 3
+  coreGenerateSpeed: 0.8
 --- !u!58 &815929939
 CircleCollider2D:
   m_ObjectHideFlags: 0

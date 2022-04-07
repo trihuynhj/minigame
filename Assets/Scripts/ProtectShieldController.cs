@@ -59,7 +59,7 @@ public class ProtectShieldController : MonoBehaviour
         // Generate a randomSpot within shieldMoveRange
         // also take into account shieldMaxRadius
         //Vector3 randomSpot = shieldInitialCenterPosition + Random.insideUnitSphere * shieldMoveRange;
-        Vector3 randomSpot = shieldInitialCenterPosition + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f) * shieldMoveRange;
+        Vector3 randomSpot = shieldInitialCenterPosition + Random.insideUnitSphere * shieldMoveRange;
         randomSpot.z = 0f;
         Debug.Log("RANDOM SPOT: " + randomSpot.ToString());
 
