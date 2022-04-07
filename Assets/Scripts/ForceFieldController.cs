@@ -33,17 +33,17 @@ public class ForceFieldController : MonoBehaviour
         if (Input.GetKeyDown("r"))
         {
             if (linearMove) { return; }
-            StartCoroutine(MoveToPosition(circleRadius, moveSpeed, moveVector));
+            StartCoroutine(MoveToRandomDestination(moveSpeed));
         }
 
         if (Input.GetKeyDown("h"))
         {
             linearMove = !linearMove;
-            if (linearMove) { StartCoroutine(LinearMovement(circleRadius, linearSpeed)); }
+            if (linearMove) { StartCoroutine(LinearMovement(linearSpeed)); }
         }
 ;   }
 
-    private IEnumerator LinearMovement(float _radius, float _speed)
+    private IEnumerator LinearMovement(float _speed)
     {
         // Must account for the offset of the Center Point
         float deltaX = transform.position.x - coreTransform.position.x;
@@ -55,9 +55,8 @@ public class ForceFieldController : MonoBehaviour
         while (linearMove)
         {
             currentRad += _speed * moveVector * Time.deltaTime;
-
-            float x = Mathf.Cos(currentRad) * _radius + coreTransform.position.x;
-            float y = Mathf.Sin(currentRad) * _radius + coreTransform.position.y;
+            float x = Mathf.Cos(currentRad) * circleRadius + coreTransform.position.x;
+            float y = Mathf.Sin(currentRad) * circleRadius + coreTransform.position.y;
 
             transform.position = new Vector3(x, y, 0f);
 
@@ -66,16 +65,16 @@ public class ForceFieldController : MonoBehaviour
         
     }
 
-    private IEnumerator MoveToPosition(float _radius, float _speed, int _moveVector)
+    private IEnumerator MoveToRandomDestination(float _speed)
     {
         // Generate a random destination to move to (z must be zero to check distance)
-        Vector3 xrandomDestination = coreTransform.position + Random.onUnitSphere * _radius;
+        Vector3 xrandomDestination = coreTransform.position + Random.onUnitSphere * circleRadius;
         xrandomDestination.z = 0f;
         Debug.Log("RANDOM DESTINATION: " + xrandomDestination.ToString());
 
         float randomRad = Random.Range(0f, 359f) * Mathf.Deg2Rad;
-        float randomX = Mathf.Cos(randomRad) * _radius + coreTransform.position.x;
-        float randomY = Mathf.Sin(randomRad) * _radius + coreTransform.position.y;
+        float randomX = Mathf.Cos(randomRad) * circleRadius + coreTransform.position.x;
+        float randomY = Mathf.Sin(randomRad) * circleRadius + coreTransform.position.y;
         Vector3 randomDestination = new Vector3(randomX, randomY, 0f);
 
         // Must account for the offset of the Center Point
@@ -85,10 +84,9 @@ public class ForceFieldController : MonoBehaviour
 
         while (Vector3.Distance(transform.position, randomDestination) > 1f)
         {
-            currentRad += _speed * _moveVector * Time.deltaTime;
-
-            float _x = Mathf.Cos(currentRad) * _radius + coreTransform.position.x;
-            float _y = Mathf.Sin(currentRad) * _radius + coreTransform.position.y;
+            currentRad += _speed * moveVector * Time.deltaTime;
+            float _x = Mathf.Cos(currentRad) * circleRadius + coreTransform.position.x;
+            float _y = Mathf.Sin(currentRad) * circleRadius + coreTransform.position.y;
 
             transform.position = new Vector3(_x, _y, 0f);
 

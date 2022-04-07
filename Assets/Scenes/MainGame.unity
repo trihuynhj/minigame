@@ -1887,8 +1887,8 @@ MonoBehaviour:
   gameController: {fileID: 480171841}
   coreTransform: {fileID: 815929936}
   circleRadius: 15
-  moveSpeed: 0.5
-  linearSpeed: 1
+  moveSpeed: 1
+  linearSpeed: 0.5
 --- !u!114 &1212112079
 MonoBehaviour:
   m_ObjectHideFlags: 0
