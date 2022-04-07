@@ -1884,10 +1884,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04b1b776fe89dc4d8b8e8fb3460a2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 480171841}
   coreTransform: {fileID: 815929936}
-  destination: {x: -15, y: 15, z: 0}
   circleRadius: 15
-  speed: 0.4
+  moveSpeed: 0.5
+  linearSpeed: 1
 --- !u!114 &1212112079
 MonoBehaviour:
   m_ObjectHideFlags: 0
