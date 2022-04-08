@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private ForceField forceField;
+
     [SerializeField] private GameObject[] arrows;
     [SerializeField] private Rigidbody2D rb;
 
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void Start()
@@ -36,10 +39,33 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = SetDirection();
         ActivateArrow();
 
+        ForceMovement();
+        FreeMovement();
+    }
+
+    // ForceMovement applied when ForceField is active
+    private void ForceMovement()
+    {
+        // Disable when the ForceField is inactive
+        if (!forceField.isActiveAndEnabled) { return; }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 directionVector = moveDirection.normalized;
             rb.velocity = directionVector * moveForce;
+        }
+    }
+
+    // FreeMovement applied when ForceField is inactive
+    private void FreeMovement()
+    {
+        // Disable when the ForceField is active
+        if (forceField.isActiveAndEnabled) { return; }
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S))
+        {
+            Vector3 directionVector = moveDirection.normalized;
+            transform.position += directionVector * moveForce * Time.deltaTime;
         }
     }
 

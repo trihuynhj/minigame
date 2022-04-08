@@ -658,6 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad1d0d1a80b6e14e907d6352c84bb53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceField: {fileID: 1212112079}
   arrows:
   - {fileID: 1873780223}
   - {fileID: 885463517}
