@@ -683,7 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackArrow: {fileID: 1358102971}
   attackArrowDefaultPosition: 1.3
-  projectileDefaultPosition: 1.5
+  projectileDefaultPosition: 1.7
   projectileContainer: {fileID: 884059162}
   projectilePrefab: {fileID: 6113859537689597167, guid: 944cd6337bd346b4bbb3155541a54af5, type: 3}
   projectileLifetime: 1
