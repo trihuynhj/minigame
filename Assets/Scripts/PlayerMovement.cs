@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 directionVector = moveDirection.normalized;
-            rb.velocity = directionVector * moveForce * Time.deltaTime;
+            rb.velocity = directionVector * moveForce;
         }
     }
 
