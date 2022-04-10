@@ -40,8 +40,6 @@ public class ProtectShieldController : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log("SHIELD CENTER POSITION: " + transform.position.ToString());
-
         // MOUSE WORLD POSITION
         //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //Debug.Log("MOUSE WORLD POSITION: " + mouseWorldPosition.ToString());

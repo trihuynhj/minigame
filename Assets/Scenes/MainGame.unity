@@ -3133,6 +3133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e56a19fba7cc4f97f1a58ea34ff2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliderPoints: 200
+  colliderRadius: 17
 --- !u!1 &2120666822
 GameObject:
   m_ObjectHideFlags: 0
