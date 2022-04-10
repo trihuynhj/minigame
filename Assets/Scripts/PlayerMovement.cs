@@ -62,14 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Disable when the ForceField is active
         if (forceField.isActiveAndEnabled) { return; }
-        // Limit the range Player object can move freely within the ArenaRing
-        if (Vector3.Distance(core.position, transform.position) >= 17.5f) 
-        {
-            Vector3 backDirection = core.position - transform.position;
-            transform.position += backDirection.normalized * Time.deltaTime;
-            return; 
-        }
-
+        
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S))
         {
             Vector3 directionVector = moveDirection.normalized;
