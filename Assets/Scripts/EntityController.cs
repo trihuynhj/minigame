@@ -7,32 +7,30 @@ public class EntityController : MonoBehaviour
     [SerializeField] private Transform gameArena;
     [SerializeField] private Transform coreTransform;
 
-    private int entityNumber;
-    private bool entityIsEnemy;
-    private string[] entityType;
-    [SerializeField] private float entitySpeed;
     [SerializeField] private GameObject entityPrefab;
-    [SerializeField] private float spawnDistanceFromCenter, entitySpawnInterval;
+    [SerializeField] private float spawnDistanceFromCenter;
 
-    private void Start()
-    {
-
-    }
+    [SerializeField] private float TEST_spawnRate, TEST_speedRate;
+    [SerializeField] private Vector2 TEST_sizeRate;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1) & coroutine == null)
+        if (Input.GetKeyDown(KeyCode.Y) & coroutine_SpawnEntity == null)
         {
-            coroutine = SpawnEntity();
-            StartCoroutine(coroutine);
+            coroutine_SpawnEntity = SpawnEntity();
+            StartCoroutine(coroutine_SpawnEntity);
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            StopCoroutine(coroutine_SpawnEntity);
+            coroutine_SpawnEntity = null;
         }
     }
 
-    private IEnumerator coroutine = null;
-
+    private IEnumerator coroutine_SpawnEntity = null;
     private IEnumerator SpawnEntity()
     {
-        while (coroutine != null)
+        while (coroutine_SpawnEntity != null)
         {
             GameObject entity = Instantiate(entityPrefab, transform);
 
@@ -44,29 +42,52 @@ public class EntityController : MonoBehaviour
             // Set Entity's Movement using Rigidbody2D
             Rigidbody2D entityRb = entity.GetComponent<Rigidbody2D>(); ;
             Vector3 directionToCore = coreTransform.position - entity.transform.position;
-            entityRb.AddForce(directionToCore.normalized * entitySpeed, ForceMode2D.Impulse);
+            entityRb.AddForce(directionToCore.normalized * GenerateEntitySpeed(), ForceMode2D.Impulse);
 
             // Plug in GameController script to Entity script
             Entity entityScript = entity.GetComponent<Entity>();
             entityScript.gameController = gameController;
+            entityScript.isEnemy = GenerateEntityType();
 
-            yield return new WaitForSeconds(entitySpawnInterval);
+            yield return new WaitForSeconds(GenerateSpawnRate());
         }  
     }
 
-    private Vector2 GenerateSpawnPosition()
+    private float GenerateSpawnRate()
     {
-        Vector3 onUnitSphere = Random.onUnitSphere;
-        Vector2 randomPoint = new Vector2(onUnitSphere.x, onUnitSphere.y) * spawnDistanceFromCenter;
-        randomPoint += new Vector2(gameArena.position.x, gameArena.position.y);
+        float rate = TEST_spawnRate + Random.value * (gameController.currentLevel + 1f);
+        return rate;
+    }
+
+    private Vector3 GenerateSpawnPosition()
+    {
+        float randomRad = Random.Range(0f, 359f) * Mathf.Deg2Rad;
+        float randomX = Mathf.Cos(randomRad) * spawnDistanceFromCenter + transform.position.x;
+        float randomY = Mathf.Sin(randomRad) * spawnDistanceFromCenter + transform.position.y;
+        Vector3 randomPoint = new Vector3(randomX, randomY, 0f);
 
         return randomPoint;
     }
 
+    private bool GenerateEntityType()
+    {
+        bool isEnemy;
+        int num = Random.Range(0, 99);
+        if (num >= 30) { isEnemy = true; }
+        else { isEnemy = false; }
+
+        return isEnemy;
+    }
+
     private Vector3 GenerateEntitySize()
     {
-        Vector3 _entitySize = Vector3.one * Random.Range(1f, 5f);
+        Vector3 entitySize = Vector3.one * Random.Range(TEST_sizeRate.x, TEST_sizeRate.y) * (gameController.currentLevel + 1f);
+        return entitySize;
+    }
 
-        return _entitySize;
+    private float GenerateEntitySpeed()
+    {
+        float entitySpeed = TEST_speedRate * (gameController.currentLevel + 1f);
+        return entitySpeed;
     }
 }

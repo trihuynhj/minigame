@@ -11,7 +11,7 @@ public class ForceFieldController : MonoBehaviour
 
     // Positive = counter-clockwise, negative = clockwise
     private int moveVector;
-    // Toggle LinearMovement
+    // Toggle LinearMovement (on/off)
     private bool linearMove;
 
     private void Start()
@@ -61,8 +61,7 @@ public class ForceFieldController : MonoBehaviour
             transform.position = new Vector3(x, y, 0f);
 
             yield return new WaitForSeconds(0.001f);
-        }
-        
+        }   
     }
 
     private IEnumerator MoveToRandomDestination(float _speed)
@@ -70,14 +69,14 @@ public class ForceFieldController : MonoBehaviour
         // Generate a random destination to move to (z must be zero to check distance)
         Vector3 xrandomDestination = coreTransform.position + Random.onUnitSphere * circleRadius;
         xrandomDestination.z = 0f;
-        Debug.Log("RANDOM DESTINATION: " + xrandomDestination.ToString());
+        //Debug.Log("RANDOM DESTINATION: " + xrandomDestination.ToString());
 
         float randomRad = Random.Range(0f, 359f) * Mathf.Deg2Rad;
         float randomX = Mathf.Cos(randomRad) * circleRadius + coreTransform.position.x;
         float randomY = Mathf.Sin(randomRad) * circleRadius + coreTransform.position.y;
         Vector3 randomDestination = new Vector3(randomX, randomY, 0f);
 
-        // Must account for the offset of the Center Point
+        // Account for the offset of the Center Point
         Vector2 delta = transform.position - coreTransform.position;
         // Calculate the current position in radian degree
         float currentRad = Mathf.Atan2(delta.y, delta.x);

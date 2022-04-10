@@ -73,39 +73,39 @@ public class PlayerMovement : MonoBehaviour
     // Set the direction toward which Player moves
     public Vector2 SetDirection()
     {
-        if (!Input.GetKey("d") && !Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s")) 
+        if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S)) 
         { 
             return moveDirection;
         }
         
         Vector2 _direction = new Vector2();
 
-        if (Input.GetKey("d"))
+        if (Input.GetKey(KeyCode.D))
         {
-            if (!Input.GetKey("w") && !Input.GetKey("s")) { _direction = eightDirections[0]; }
-            if (Input.GetKey("w")) { _direction = eightDirections[1]; }
-            if (Input.GetKey("s")) { _direction = eightDirections[7]; }
+            if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)) { _direction = eightDirections[0]; }
+            if (Input.GetKey(KeyCode.W)) { _direction = eightDirections[1]; }
+            if (Input.GetKey(KeyCode.S)) { _direction = eightDirections[7]; }
         }
 
-        if (Input.GetKey("w"))
+        if (Input.GetKey(KeyCode.W))
         {
-            if (!Input.GetKey("a") && !Input.GetKey("d")) { _direction = eightDirections[2]; }
-            if (Input.GetKey("a")) { _direction = eightDirections[3]; }
-            if (Input.GetKey("d")) { _direction = eightDirections[1]; }
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) { _direction = eightDirections[2]; }
+            if (Input.GetKey(KeyCode.A)) { _direction = eightDirections[3]; }
+            if (Input.GetKey(KeyCode.D)) { _direction = eightDirections[1]; }
         }
 
-        if (Input.GetKey("a"))
+        if (Input.GetKey(KeyCode.A))
         {
-            if (!Input.GetKey("s") && !Input.GetKey("w")) { _direction = eightDirections[4]; }
-            if (Input.GetKey("s")) { _direction = eightDirections[5]; }
-            if (Input.GetKey("w")) { _direction = eightDirections[3]; }
+            if (!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) { _direction = eightDirections[4]; }
+            if (Input.GetKey(KeyCode.S)) { _direction = eightDirections[5]; }
+            if (Input.GetKey(KeyCode.W)) { _direction = eightDirections[3]; }
         }
 
-        if (Input.GetKey("s"))
+        if (Input.GetKey(KeyCode.S))
         {
-            if (!Input.GetKey("d") && !Input.GetKey("a")) { _direction = eightDirections[6]; }
-            if (Input.GetKey("d")) { _direction = eightDirections[7]; }
-            if (Input.GetKey("a")) { _direction = eightDirections[5]; }
+            if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A)) { _direction = eightDirections[6]; }
+            if (Input.GetKey(KeyCode.D)) { _direction = eightDirections[7]; }
+            if (Input.GetKey(KeyCode.A)) { _direction = eightDirections[5]; }
         }
 
         return _direction;
