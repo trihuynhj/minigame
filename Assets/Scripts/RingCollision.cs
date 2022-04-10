@@ -2,15 +2,15 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class AreaRingCollision : MonoBehaviour
+public class RingCollision : MonoBehaviour
 {
-    private EdgeCollider2D areaRingCollider;
+    private EdgeCollider2D ringCollider;
     [SerializeField] private int colliderPoints;
     [SerializeField] private float colliderRadius;
 
     private void Awake()
     {
-        areaRingCollider = GetComponent<EdgeCollider2D>();
+        ringCollider = GetComponent<EdgeCollider2D>();
     }
 
     private void Update()
@@ -33,6 +33,6 @@ public class AreaRingCollision : MonoBehaviour
             // Add current point to list of EdgeCollider2D
             points.Add(new Vector2(x, y));
         }
-        areaRingCollider.SetPoints(points);
+        ringCollider.SetPoints(points);
     }
 }
