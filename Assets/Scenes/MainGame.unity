@@ -193,19 +193,22 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '"R" = MoveToPosition()
+  m_Text: '"R" = MoveToPosition(), ForceField
 
-    "H" = LinearMovement()
+    "H" = LinearMovement(), ForceField
 
-    "P" = moveVector
+    "P"
+    = moveVector, ForceField
 
-    "G"
-    = forceVector
+    "G" = forceVector, ForceField
 
-    "M" = update movement of Level Ticks
+    "M" = update
+    movement of Level Ticks
 
-    "O" = ShieldMovement
-    to a randomSpot'
+    "O" = ShieldMovement to a randomSpot
+
+    "U" /
+    "Y" = Toggle SpawnEntity'
 --- !u!222 &15520972
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1100,7 +1103,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - EntityController (enemySize, spawnInterval?)'
+    - LevelTick (real time update and movement of the ticks)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2633,7 +2636,9 @@ MonoBehaviour:
   coreTransform: {fileID: 815929936}
   entityPrefab: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
   spawnDistanceFromCenter: 30
-  entitySpawnInterval: 1
+  TEST_spawnRate: 1
+  TEST_speedRate: 1
+  TEST_sizeRate: {x: 0.7, y: 1.5}
 --- !u!1 &1654443042
 GameObject:
   m_ObjectHideFlags: 0
