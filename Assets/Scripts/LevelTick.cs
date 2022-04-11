@@ -17,10 +17,7 @@ public class LevelTick : MonoBehaviour
     }
 
     private void Update()
-    {        
-        // TESTING PURPOSE
-        //if (Input.GetKeyDown(KeyCode.M)) { TickMovement(); }
-
+    {
         TickMovement();
     }
 
@@ -37,6 +34,9 @@ public class LevelTick : MonoBehaviour
 
     private IEnumerator Traverse(float _designatedYPos)
     {
+        // This only accounts for the tick moving upward, no downward movement
+        // Because there is no regression in the game, Player loses [Game-Over]
+        // once vitalityPoint has run out, regardless of the level they were at.
         while (transform.position.y < _designatedYPos)
         {
             transform.position += new Vector3(0, traverseSpeed, 0);
