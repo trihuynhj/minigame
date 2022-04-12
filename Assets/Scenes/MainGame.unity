@@ -1101,7 +1101,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - Core (dynamically change according to currentLevel)'
+    - ProtectShield (integrate currentLevel into its mechanics)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
