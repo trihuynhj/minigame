@@ -689,7 +689,7 @@ MonoBehaviour:
   projectileDefaultPosition: 1.7
   projectileContainer: {fileID: 884059162}
   projectilePrefab: {fileID: 6113859537689597167, guid: 944cd6337bd346b4bbb3155541a54af5, type: 3}
-  projectileLifetime: 1
+  projectileLifetime: 3
   projectileSpeed: 10
   attackInterval: 5
 --- !u!1 &446341910
