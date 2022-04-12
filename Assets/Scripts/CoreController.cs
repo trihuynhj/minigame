@@ -3,39 +3,53 @@ using UnityEngine;
 
 public class CoreController : MonoBehaviour
 {
-    [SerializeField] private float coreInitialScale;
-    [SerializeField] private float coreMinSize, coreMaxSize;
-    [SerializeField] private float coreGenerateSpeed;
+    [SerializeField] private GameController gameController;
+
+    [SerializeField] private float sizeDiff, generateSpeed;
+    private float coreMin, coreMax;
     
     // Determines core grow (1) or shrink (-1)
-    private int coreGenerateVector;
+    private int generateVector;
 
     private void Start()
     {
-        transform.localScale = Vector3.one * coreInitialScale;
-        coreGenerateVector = 1;
+        generateVector = 1;
     }
 
     private void Update()
     {
-        LinearGenerateShape();
         GenerateVector();
+        GenerateSize();
+
+        LinearGenerateShape();
     }
 
     private void LinearGenerateShape()
     {
-        transform.localScale += Vector3.one * coreGenerateVector * (coreGenerateSpeed * Time.deltaTime);
+        float speed = (generateSpeed + (gameController.currentLevel + 1f) / 10f) * Time.deltaTime;
+        transform.localScale += Vector3.one * generateVector * speed;
+    }
+
+    private void GenerateSize()
+    {
+        float index = gameController.currentLevel;
+        if (index < 7) { sizeDiff = .25f; }
+        else if (index < 13) { sizeDiff = .35f; }
+        else { sizeDiff = .45f; }
+
+        coreMin = (index + 2f) / 2f;
+        coreMax = coreMin * (1f + sizeDiff);
     }
 
     private void GenerateVector()
     {
-        if (transform.localScale.x >= coreMaxSize)
+        if (transform.localScale.x >= coreMax)
         {
-            coreGenerateVector = -1;
+            generateVector = -1;
         }
-        else if (transform.localScale.x <= coreMinSize)
+        else if (transform.localScale.x <= coreMin)
         {
-            coreGenerateVector = 1;
+            generateVector = 1;
         }
         else { return; }
     }

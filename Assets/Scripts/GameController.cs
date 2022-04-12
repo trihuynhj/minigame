@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
 
     // GAME PROGRESSION (PUBLIC FIELDS)
     public int currentLevel, currentPoint, currentMaxPoint;
+    private int maxlevel = 16;
 
     // LEVEL BRACKETS (TOTAL OF 16 LEVELS EXCLUDING LEVEL ZERO)
     private int[] levelBrackets = new int[17]
@@ -40,9 +41,9 @@ public class GameController : MonoBehaviour
         20000   // LVL 16
     };
 
-    public bool outOfProtectShield;
-    private float decrementInterval;
-    [SerializeField] private float outBuffer;
+    // 
+    [HideInInspector] public bool outOfProtectShield;
+    [SerializeField] private float outBuffer, decrementInterval;
 
     // To trigger the UpdateCurrentPointByProtectShield only AFTER the shield has been rendered
     private bool shieldRenderDone = false;
@@ -58,13 +59,15 @@ public class GameController : MonoBehaviour
         progressBar.SetPoint(currentPoint);
 
         outOfProtectShield = false;
-        decrementInterval = 1f;
 
         Invoke("CheckShieldRender", .6f);
     }
 
     private void Update()
     {
+        // Limit Level to 16
+        if (currentLevel > maxlevel) { currentLevel = maxlevel; }
+
         UpdateCurrentPointByProtectShield();
 
         // SET PROGRESS BAR
