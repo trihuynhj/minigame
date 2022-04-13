@@ -1261,7 +1261,7 @@ MonoBehaviour:
   shieldGenerateInterval: 0.01
   shieldGenerateSpeed: 0.01
   shieldMoveRange: 16
-  shieldMoveSpeed: 15
+  shieldMoveSpeed: 1
   shieldInitialCenterPosition: {x: 0, y: 0, z: 0}
 --- !u!68 &815577695
 EdgeCollider2D:

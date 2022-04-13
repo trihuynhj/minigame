@@ -68,6 +68,7 @@ public class ProtectShieldController : MonoBehaviour
 
     private void RenderShield()
     {
+        GenerateMinMax();
         GenerateRadius();
         GenerateShapeAndCollision(shieldRenderPoints, shieldRadius);
     }
@@ -135,5 +136,27 @@ public class ProtectShieldController : MonoBehaviour
         }
     }
 
-    
+    private void GenerateMinMax()
+    {
+        float sizeDiff;
+        float index = gameController.currentLevel;
+
+        if (index < 7) 
+        { 
+            sizeDiff = .45f;
+            shieldMinRadius = 5f;
+        }
+        else if (index < 13) 
+        { 
+            sizeDiff = .35f;
+            shieldMinRadius = 3f;
+        }
+        else 
+        { 
+            sizeDiff = .25f;
+            shieldMinRadius = 1.5f;
+        }
+
+        shieldMaxRadius = shieldMinRadius * (1f + sizeDiff);
+    }
 }
