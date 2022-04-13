@@ -31,8 +31,7 @@ public class ProtectShieldController : MonoBehaviour
     {
         shieldGenerateVector = true;
 
-        // Initially set both randomSpot and shieldCenter to the center of game arena
-        //randomSpot = transform.position;
+        // Initially set shieldCenter to the center of game arena
         shieldInitialCenterPosition = transform.position;
 
         InvokeRepeating("RenderShield", .5f, shieldGenerateInterval);
@@ -40,10 +39,6 @@ public class ProtectShieldController : MonoBehaviour
 
     private void Update()
     {
-        // MOUSE WORLD POSITION
-        //Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Debug.Log("MOUSE WORLD POSITION: " + mouseWorldPosition.ToString());
-
         // Press O to move shield towards randomSpot (TETING PURPOSE)
         if (Input.GetKeyDown(KeyCode.O) && coroutine_ShieldMovement == null)
         {
@@ -56,7 +51,6 @@ public class ProtectShieldController : MonoBehaviour
     {
         // Generate a randomSpot within shieldMoveRange
         // also take into account shieldMaxRadius
-        //Vector3 randomSpot = shieldInitialCenterPosition + Random.insideUnitSphere * shieldMoveRange;
         Vector3 randomSpot = shieldInitialCenterPosition + Random.insideUnitSphere * shieldMoveRange;
         randomSpot.z = 0f;
         Debug.Log("RANDOM SPOT: " + randomSpot.ToString());
@@ -74,7 +68,7 @@ public class ProtectShieldController : MonoBehaviour
 
     private void RenderShield()
     {
-        shieldRadius = GenerateRadius(shieldMinRadius, shieldMaxRadius, shieldGenerateSpeed);
+        GenerateRadius();
         GenerateShapeAndCollision(shieldRenderPoints, shieldRadius);
     }
 
@@ -127,21 +121,19 @@ public class ProtectShieldController : MonoBehaviour
         shieldCollider.SetPoints(points);
     }
 
-    private float GenerateRadius(float minR, float maxR, float speed)
+    private void GenerateRadius()
     {
-        float _radius = shieldRadius;
-
         if (shieldGenerateVector)
         {
-            _radius += speed;
-            if (_radius >= maxR) { shieldGenerateVector = false; }
-            return _radius;
+            shieldRadius += shieldGenerateSpeed;
+            if (shieldRadius >= shieldMaxRadius) { shieldGenerateVector = false; }
         }
         else
         {
-            _radius -= speed;
-            if (_radius <= minR) { shieldGenerateVector = true; }
-            return _radius;
+            shieldRadius -= shieldGenerateSpeed;
+            if (shieldRadius <= shieldMinRadius) { shieldGenerateVector = true; }
         }
     }
+
+    
 }
