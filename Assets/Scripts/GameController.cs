@@ -28,19 +28,19 @@ public class GameController : MonoBehaviour
         80,     // LVL 1    [50 points]
         150,    // LVL 2    [70 points]
         250,    // LVL 3    [100 points]
-        350,    // LVL 4    [100 points]
-        500,    // LVL 5    [150 points]
-        650,    // LVL 6    [200 points]
-        850,    // LVL 7    [300 points]
-        1150,   // LVL 8    [400 points]
-        1550,   // LVL 9    [500 points]
-        2050,   // LVL 10   [600 points]
-        2650,   // LVL 11   [800 points]
-        3450,   // LVL 12   [1000 points]
-        4450,   // LVL 13   [1500 points]
-        5950,   // LVL 14   [3000 points]
-        8950,   // LVL 15   [5000 points]
-        13950   // LVL 16
+        350,    // LVL 4    [200 points]
+        550,    // LVL 5    [300 points]
+        850,    // LVL 6    [500 points]
+        1350,   // LVL 7    [600 points]
+        1950,   // LVL 8    [800 points]
+        2750,   // LVL 9    [1200 points]
+        3950,   // LVL 10   [1500 points]
+        5450,   // LVL 11   [1500 points]
+        6950,   // LVL 12   [2000 points]
+        8950,   // LVL 13   [2000 points]
+        10950,  // LVL 14   [3000 points]
+        13950,  // LVL 15   [5000 points]
+        18950   // LVL 16
     };
 
     // PROTECTSHIELD's EFFECT
