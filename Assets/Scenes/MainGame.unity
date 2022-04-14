@@ -1102,7 +1102,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - ProtectShield (integrate currentLevel into its mechanics)'
+    - ProtectShield (integrate currentLevel into its mechanics)
+
+    -
+    Vitality system (independent of ProgressBar and currentPoint)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
