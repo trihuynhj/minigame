@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private ProtectShieldController protectShieldController;
 
+    // VITALITY BAR -> NEED IMPLEMENTATION
+
     // PROGRESS BAR
     [SerializeField] private Text progressText;
     [SerializeField] private ProgressBar progressBar;
@@ -16,32 +18,32 @@ public class GameController : MonoBehaviour
     [SerializeField] private Text levelText;
 
     // GAME PROGRESSION (PUBLIC FIELDS)
-    public int currentLevel, currentPoint, currentMaxPoint;
+    public int currentLevel, currentPoint, currentMinPoint, currentMaxPoint;
     private int maxlevel = 16;
 
     // LEVEL BRACKETS (TOTAL OF 16 LEVELS EXCLUDING LEVEL ZERO)
     private int[] levelBrackets = new int[17]
     {
-        200,    // LVL 0*
-        400,    // LVL 1
-        600,    // LVL 2
-        900,    // LVL 3
-        1200,   // LVL 4
-        1500,   // LVL 5
-        1800,   // LVL 6
-        2000,   // LVL 7
-        2500,   // LVL 8
-        3000,   // LVL 9
-        4000,   // LVL 10
-        5500,   // LVL 11
-        7000,   // LVL 12
-        9000,   // LVL 13
-        11000,  // LVL 14
-        15000,  // LVL 15
-        20000   // LVL 16
+        30,     // LVL 0*   [30 points] -> points to pass the current level
+        80,     // LVL 1    [50 points]
+        150,    // LVL 2    [70 points]
+        250,    // LVL 3    [100 points]
+        350,    // LVL 4    [100 points]
+        500,    // LVL 5    [150 points]
+        650,    // LVL 6    [200 points]
+        850,    // LVL 7    [300 points]
+        1150,   // LVL 8    [400 points]
+        1550,   // LVL 9    [500 points]
+        2050,   // LVL 10   [600 points]
+        2650,   // LVL 11   [800 points]
+        3450,   // LVL 12   [1000 points]
+        4450,   // LVL 13   [1500 points]
+        5950,   // LVL 14   [3000 points]
+        8950,   // LVL 15   [5000 points]
+        13950   // LVL 16
     };
 
-    // 
+    // PROTECTSHIELD's EFFECT
     [HideInInspector] public bool outOfProtectShield;
     [SerializeField] private float outBuffer, decrementInterval;
 
@@ -50,12 +52,8 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        currentLevel = 0;
-        currentPoint = 100;
-        currentMaxPoint = levelBrackets[currentLevel];
-
         // Set ProgressBar's initial value
-        progressBar.SetMaxPoint(currentMaxPoint);
+        progressBar.SetMinMaxPoints(currentMinPoint, currentMaxPoint);
         progressBar.SetPoint(currentPoint);
 
         outOfProtectShield = false;
@@ -68,28 +66,35 @@ public class GameController : MonoBehaviour
         // Limit Level to 16
         if (currentLevel > maxlevel) { currentLevel = maxlevel; }
 
+        // UPDATE GAME STATES
+        UpdateCurrentLevel();
         UpdateCurrentPointByProtectShield();
 
         // SET PROGRESS BAR
         progressBar.SetPoint(currentPoint);
-        progressBar.SetMaxPoint(currentMaxPoint);
+        progressBar.SetMinMaxPoints(currentMinPoint, currentMaxPoint);
 
         // DISPLAY FOR TESTING
         progressText.text = currentPoint.ToString();
-        levelText.text = currentLevel.ToString();
-
-        UpdateCurrentLevel();
+        levelText.text = currentLevel.ToString(); 
     }
 
     private void UpdateCurrentLevel()
     {
-        if (currentPoint < 200) { return; }
+        // Cover edge case (Start of game, currentLevel = 0)
+        if (currentPoint < 30) 
+        {
+            currentLevel = 0;
+            currentMaxPoint = levelBrackets[currentLevel];
+            return;
+        }
 
         for (int i = 0; i < levelBrackets.Length; i++)
         {
             if (currentPoint >= levelBrackets[i] && currentPoint <= levelBrackets[i + 1])
             {
                 currentLevel = i + 1;
+                currentMinPoint = levelBrackets[currentLevel - 1];
                 currentMaxPoint = levelBrackets[currentLevel];
             }
         }

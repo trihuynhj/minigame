@@ -824,10 +824,11 @@ MonoBehaviour:
   levelText: {fileID: 1259050678}
   currentLevel: 0
   currentPoint: 0
+  currentMinPoint: 0
   currentMaxPoint: 0
   outOfProtectShield: 0
   outBuffer: 0.8
-  decrementInterval: 0
+  decrementInterval: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
