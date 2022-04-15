@@ -1026,7 +1026,11 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'To-do List:
 
-    - Vitality system (independent of ProgressBar and currentPoint)'
+    - Vitality system (independent of ProgressBar and currentPoint)
+
+    -
+    Integrate currentLevel into Points (increment/decrement magnitude of Enemy, Ally,
+    OutOfShield, etc.)'
 --- !u!222 &804744492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1655,13 +1659,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "A = Death Zone\nB = Enemy\nC = Ally\nD = Force Field\nE = Moving Force
-    Field\nF = Reverse Force Field\nG = Constant Moving Force Field\nH = Moving Protect
-    Shield\nI =\nJ =\nK =\n\n\nLevel 16: N/A \nLevel 15: \tA, B, C\nLevel 14: \tA,
-    B, C\nLevel 13: \tA, B, C\nLevel 12: \tA, B, C\nLevel 11: \tA, B, C\nLevel 10:
-    \tA, B, C\nLevel 9:\t\tA, B, C\nLevel 8:\t\tA, B, C\nLevel 7:\t\tA, B, C \nLevel
-    6:\t\tA, B, C\nLevel 5:\t\tA, B, C\nLevel 4:\t\tA, B, C\nLevel 3:\t\tA, B, C\nLevel
-    2:\t\tA, B, C\nLevel 1:\t\tA, B\nLevel 0:\t\tA, B"
+  m_Text: "A = Death Zone / Protect Shield\nB = Enemy\nC = Ally\nD = Force Field\nE
+    = Moving Force Field\nF = Reverse Force Field\nG = Constant Moving Force Field\nH
+    = Moving Protect Shield\nI =\nJ =\nK =\n\n\nLevel 16: N/A \nLevel 15: \tA, B,
+    C\nLevel 14: \tA, B, C\nLevel 13: \tA, B, C\nLevel 12: \tA, B, C\nLevel 11: \tA,
+    B, C\nLevel 10: \tA, B, C\nLevel 9:\t\tA, B, C\nLevel 8:\t\tA, B, C\nLevel 7:\t\tA,
+    B, C \nLevel 6:\t\tA, B, C\nLevel 5:\t\tA, B, C\nLevel 4:\t\tA, B, C\nLevel 3:\t\tA,
+    B, C\nLevel 2:\t\tA, B, C\nLevel 1:\t\tA, B\nLevel 0:\t\tA, B"
 --- !u!222 &1047491168
 CanvasRenderer:
   m_ObjectHideFlags: 0
