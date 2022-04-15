@@ -39,13 +39,21 @@ public class ProtectShieldController : MonoBehaviour
 
     private void Update()
     {
-        // Press O to move shield towards randomSpot (TETING PURPOSE)
-        if (Input.GetKeyDown(KeyCode.O) && coroutine_ShieldMovement == null)
+        if (gameController.currentLevel > 7 && coroutine_InvokeShieldMovement == null)
         {
-            coroutine_ShieldMovement = ShieldMovement();
-            StartCoroutine(coroutine_ShieldMovement);
+            coroutine_InvokeShieldMovement = InvokeShieldMovement();
+            StartCoroutine(coroutine_InvokeShieldMovement);
         }
     }
+
+    private IEnumerator InvokeShieldMovement()
+    {
+        StartCoroutine(ShieldMovement());
+        yield return new WaitForSeconds(Random.Range(5f, 10f));
+
+        coroutine_InvokeShieldMovement = null;
+    }
+    private IEnumerator coroutine_InvokeShieldMovement = null;
 
     private IEnumerator ShieldMovement()
     {
@@ -61,14 +69,11 @@ public class ProtectShieldController : MonoBehaviour
             transform.position = Vector3.MoveTowards(currentPosition, randomSpot, shieldMoveSpeed * Time.deltaTime);
             yield return new WaitForSeconds(0.001f);
         }
-
-        coroutine_ShieldMovement = null;
     }
-    private IEnumerator coroutine_ShieldMovement = null;
 
     private void RenderShield()
     {
-        GenerateMinMax();
+        GenerateMinMaxRadius();
         GenerateRadius();
         GenerateShapeAndCollision(shieldRenderPoints, shieldRadius);
     }
@@ -136,7 +141,7 @@ public class ProtectShieldController : MonoBehaviour
         }
     }
 
-    private void GenerateMinMax()
+    private void GenerateMinMaxRadius()
     {
         float sizeDiff;
         float index = gameController.currentLevel;
@@ -144,17 +149,20 @@ public class ProtectShieldController : MonoBehaviour
         if (index < 7) 
         { 
             sizeDiff = .45f;
-            shieldMinRadius = 5f;
+            shieldMinRadius = 6f;
+            shieldMoveRange = 7f;
         }
         else if (index < 13) 
         { 
             sizeDiff = .35f;
-            shieldMinRadius = 3f;
+            shieldMinRadius = 3.5f;
+            shieldMoveRange = 9f;
         }
         else 
         { 
             sizeDiff = .25f;
-            shieldMinRadius = 1.5f;
+            shieldMinRadius = 2f;
+            shieldMoveRange = 11f;
         }
 
         shieldMaxRadius = shieldMinRadius * (1f + sizeDiff);

@@ -18,7 +18,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private Text levelText;
 
     // GAME PROGRESSION (PUBLIC FIELDS)
-    public int currentLevel, currentPoint, currentMinPoint, currentMaxPoint;
+    public int currentLevel, currentPoint;
+    private int currentMinPoint, currentMaxPoint;
     private int maxlevel = 16;
 
     // LEVEL BRACKETS (TOTAL OF 16 LEVELS EXCLUDING LEVEL ZERO)
