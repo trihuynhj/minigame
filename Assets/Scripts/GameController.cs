@@ -8,10 +8,12 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private ProtectShieldController protectShieldController;
 
-    // VITALITY BAR -> NEED IMPLEMENTATION
+    // VITALITY BAR -> ON-GOING
     public int vitalityPoint;
     private int vitalityMinPoint = 0;
     private int vitalityMaxPoint = 100;
+    [SerializeField] private Text vitalityText;
+    [SerializeField] private VitalityBar vitalityBar;
 
     // PROGRESS BAR
     [SerializeField] private Text progressText;
