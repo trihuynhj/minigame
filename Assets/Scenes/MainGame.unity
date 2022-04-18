@@ -387,8 +387,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1338361565}
   - {fileID: 793079077}
+  - {fileID: 1338361565}
   - {fileID: 1829282250}
   - {fileID: 1455869865}
   - {fileID: 2143015684}
@@ -897,7 +897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 408322707}
   protectShieldController: {fileID: 815577694}
-  vitalityPoint: 0
+  vitalityPoint: 100
   vitalityText: {fileID: 1338361566}
   vitalityBar: {fileID: 793079078}
   progressText: {fileID: 1455869866}
@@ -1066,7 +1066,7 @@ RectTransform:
   - {fileID: 296926532}
   - {fileID: 994213047}
   m_Father: {fileID: 83221887}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d1f03c58a0b5e543a6e6bec6f7ed0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 793079079}
 --- !u!114 &793079079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2554,7 +2554,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 83221887}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

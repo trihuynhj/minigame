@@ -21,15 +21,15 @@ public class Entity : MonoBehaviour
     {
         if (collision.CompareTag("Projectile"))
         {
-            if (isEnemy) { gameController.currentPoint++; }
-            else { gameController.currentPoint--; }
+            if (isEnemy) { gameController.vitalityPoint++; }
+            else { gameController.vitalityPoint--; }
 
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Core"))
         {
-            if (isEnemy) { gameController.currentPoint--; }
-            else { gameController.currentPoint++; }
+            if (isEnemy) { gameController.vitalityPoint--; }
+            else { gameController.vitalityPoint++; }
             
             Destroy(gameObject);
         }

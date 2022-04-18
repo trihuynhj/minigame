@@ -77,12 +77,15 @@ public class GameController : MonoBehaviour
         UpdateCurrentPointByProtectShield();
 
         // SET VITALITY BAR
+        vitalityBar.SetPoint(vitalityPoint);
+        vitalityBar.SetMinMaxPoints(vitalityMinPoint, vitalityMaxPoint);
 
         // SET PROGRESS BAR
         progressBar.SetPoint(currentPoint);
         progressBar.SetMinMaxPoints(currentMinPoint, currentMaxPoint);
 
         // DISPLAY FOR TESTING
+        vitalityText.text = vitalityPoint.ToString();
         progressText.text = currentPoint.ToString();
         levelText.text = currentLevel.ToString(); 
     }
@@ -106,6 +109,11 @@ public class GameController : MonoBehaviour
                 currentMaxPoint = levelBrackets[currentLevel];
             }
         }
+    }
+
+    private void UpdateVitality()
+    {
+        // NEED IMPLEMENTATION
     }
 
     private void CheckShieldRender()
