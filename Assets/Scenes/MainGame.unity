@@ -239,8 +239,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69836769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 0, z: -1}
-  m_LocalScale: {x: 6, y: 40, z: 1}
+  m_LocalPosition: {x: 6.5, y: 0, z: -1}
+  m_LocalScale: {x: 4, y: 40, z: 1}
   m_Children: []
   m_Father: {fileID: 1256989920}
   m_RootOrder: 1
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.3529412, b: 0.27450982, a: 1}
+  m_Color: {r: 0.9411765, g: 0.15393375, b: 0.17308594, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -795,8 +795,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446341910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.6, y: 0, z: 0}
-  m_LocalScale: {x: 26, y: 40, z: 1}
+  m_LocalPosition: {x: 22, y: 0, z: 0}
+  m_LocalScale: {x: 27.5, y: 40, z: 1}
   m_Children: []
   m_Father: {fileID: 1256989920}
   m_RootOrder: 0
@@ -1881,7 +1881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 642.5, y: -2.4999}
+  m_AnchoredPosition: {x: 575, y: -20}
   m_SizeDelta: {x: 635, y: 1075}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1047491167
@@ -1918,12 +1918,14 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "A = Death Zone / Protect Shield\nB = Enemy\nC = Ally\nD = Force Field\nE
-    = Moving Force Field\nF = Reverse Force Field\nG = Constant Moving Force Field\nH
-    = Moving Protect Shield\nI =\nJ =\nK =\n\n\nLevel 16: \tN/A \nLevel 15: \tA,
-    B, C\nLevel 14: \tA, B, C\nLevel 13: \tA, B, C\nLevel 12: \tA, B, C\nLevel 11:
-    \tA, B, C\nLevel 10: \tA, B, C\nLevel 9:\t\tA, B, C\nLevel 8:\t\tA, B, C\nLevel
-    7:\t\tA, B, C \nLevel 6:\t\tA, B, C\nLevel 5:\t\tA, B, C\nLevel 4:\t\tA, B, C\nLevel
-    3:\t\tA, B, C\nLevel 2:\t\tA, B, C\nLevel 1:\t\tA, B\nLevel 0:\t\tA, B"
+    = Periodic Moving Force Field\nF = Periodic Reverse Force Field\nG = Constant
+    Moving Force Field\nH = Moving Protect Shield\nI =\nJ =\nK =\n\n\nLevel 16: \tN/A
+    \nLevel 15: \tA, B, C, D, E, F, G, H\nLevel 14: \tA, B, C, D, E, F, G, H\nLevel
+    13: \tA, B, C, D, E, F, G, H\nLevel 12: \tA, B, C, D, E, F, G\nLevel 11: \tA,
+    B, C, D, E, F, G\nLevel 10: \tA, B, C, D, E, F\nLevel 9:\t\tA, B, C, D, E, F\nLevel
+    8:\t\tA, B, C, D, E, F\nLevel 7:\t\tA, B, C, D, E\nLevel 6:\t\tA, B, C, D\nLevel
+    5:\t\tA, B, C, D\nLevel 4:\t\tA, B, C\nLevel 3:\t\tA, B, C\nLevel 2:\t\tA, B,
+    C\nLevel 1:\t\tA, B\nLevel 0:\t\tA, B"
 --- !u!222 &1047491168
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2574,7 +2576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.2713411, b: 0.1830188, a: 1}
+  m_Color: {r: 0.94117653, g: 0.15294118, b: 0.17254902, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2720,7 +2722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -55, y: -510}
+  m_AnchoredPosition: {x: -35, y: -510}
   m_SizeDelta: {x: 256, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385548552
@@ -3172,7 +3174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55, y: -510}
+  m_AnchoredPosition: {x: 35, y: -510}
   m_SizeDelta: {x: 256, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1806210258
@@ -3761,6 +3763,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: 0}
+  m_AnchoredPosition: {x: 175, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
