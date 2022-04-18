@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private ProtectShieldController protectShieldController;
 
     // VITALITY BAR -> NEED IMPLEMENTATION
+    public int vitalityPoint;
+    private int vitalityMinPoint = 0;
+    private int vitalityMaxPoint = 100;
 
     // PROGRESS BAR
     [SerializeField] private Text progressText;
@@ -70,6 +73,8 @@ public class GameController : MonoBehaviour
         // UPDATE GAME STATES
         UpdateCurrentLevel();
         UpdateCurrentPointByProtectShield();
+
+        // SET VITALITY BAR
 
         // SET PROGRESS BAR
         progressBar.SetPoint(currentPoint);
