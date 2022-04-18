@@ -153,7 +153,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 83221887}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -393,9 +393,9 @@ RectTransform:
   - {fileID: 1455869865}
   - {fileID: 2143015684}
   - {fileID: 1259050677}
+  - {fileID: 1047491166}
   - {fileID: 15520970}
   - {fileID: 804744490}
-  - {fileID: 1047491166}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1167,7 +1167,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 83221887}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1877,7 +1877,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 83221887}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1919,11 +1919,11 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "A = Death Zone / Protect Shield\nB = Enemy\nC = Ally\nD = Force Field\nE
     = Moving Force Field\nF = Reverse Force Field\nG = Constant Moving Force Field\nH
-    = Moving Protect Shield\nI =\nJ =\nK =\n\n\nLevel 16: N/A \nLevel 15: \tA, B,
-    C\nLevel 14: \tA, B, C\nLevel 13: \tA, B, C\nLevel 12: \tA, B, C\nLevel 11: \tA,
-    B, C\nLevel 10: \tA, B, C\nLevel 9:\t\tA, B, C\nLevel 8:\t\tA, B, C\nLevel 7:\t\tA,
-    B, C \nLevel 6:\t\tA, B, C\nLevel 5:\t\tA, B, C\nLevel 4:\t\tA, B, C\nLevel 3:\t\tA,
-    B, C\nLevel 2:\t\tA, B, C\nLevel 1:\t\tA, B\nLevel 0:\t\tA, B"
+    = Moving Protect Shield\nI =\nJ =\nK =\n\n\nLevel 16: \tN/A \nLevel 15: \tA,
+    B, C\nLevel 14: \tA, B, C\nLevel 13: \tA, B, C\nLevel 12: \tA, B, C\nLevel 11:
+    \tA, B, C\nLevel 10: \tA, B, C\nLevel 9:\t\tA, B, C\nLevel 8:\t\tA, B, C\nLevel
+    7:\t\tA, B, C \nLevel 6:\t\tA, B, C\nLevel 5:\t\tA, B, C\nLevel 4:\t\tA, B, C\nLevel
+    3:\t\tA, B, C\nLevel 2:\t\tA, B, C\nLevel 1:\t\tA, B\nLevel 0:\t\tA, B"
 --- !u!222 &1047491168
 CanvasRenderer:
   m_ObjectHideFlags: 0

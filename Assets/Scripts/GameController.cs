@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
 
         // UPDATE GAME STATES
         UpdateCurrentLevel();
-        UpdateCurrentPointByProtectShield();
+        UpdateVitalityPointByProtectShield();
 
         // SET VITALITY BAR
         vitalityBar.SetPoint(vitalityPoint);
@@ -122,22 +122,22 @@ public class GameController : MonoBehaviour
     }
 
     // Assign Coroutine so that it only runs once in Update()
-    private IEnumerator coroutine = null;
+    private IEnumerator coroutine_CheckShieldBound = null;
 
     public IEnumerator CheckShieldBound()
     {
         if (outOfProtectShield)
         {
-            // Update currentPoint and ProgressBar
-            currentPoint--;
+            // Update vitalityPoint and ProgressBar
+            vitalityPoint--;
             yield return new WaitForSeconds(decrementInterval);
 
-            coroutine = null;
+            coroutine_CheckShieldBound = null;
         }
     }
 
     // Check if Player is out of ProtectShield, if so start the Coroutine to decrement currentPoint
-    private void UpdateCurrentPointByProtectShield()
+    private void UpdateVitalityPointByProtectShield()
     {
         // Make sure to not update currentPoint before ProtectShield is rendered
         if (!shieldRenderDone) { return; }
@@ -145,12 +145,12 @@ public class GameController : MonoBehaviour
         float playerDistance = Vector3.Distance(player.position, protectShieldController.transform.position);
         float protectShieldBound = protectShieldController.shieldRadius + outBuffer;
 
-        if (playerDistance > protectShieldBound & coroutine == null)
+        if (playerDistance > protectShieldBound & coroutine_CheckShieldBound == null)
         {
             outOfProtectShield = true;
 
-            coroutine = CheckShieldBound();
-            StartCoroutine(coroutine);
+            coroutine_CheckShieldBound = CheckShieldBound();
+            StartCoroutine(coroutine_CheckShieldBound);
         }
         else
         {
