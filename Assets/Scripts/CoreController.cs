@@ -26,13 +26,13 @@ public class CoreController : MonoBehaviour
 
     private void LinearGenerateShape()
     {
-        float speed = (generateSpeed + (gameController.currentLevel + 1f) / 10f) * Time.deltaTime;
+        float speed = (generateSpeed + (gameController.level + 1f) / 10f) * Time.deltaTime;
         transform.localScale += Vector3.one * generateVector * speed;
     }
 
     private void GenerateSize()
     {
-        float index = gameController.currentLevel;
+        float index = gameController.level;
         if (index < 7) { sizeDiff = .25f; }
         else if (index < 13) { sizeDiff = .35f; }
         else { sizeDiff = .45f; }

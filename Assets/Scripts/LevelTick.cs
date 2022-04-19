@@ -23,7 +23,7 @@ public class LevelTick : MonoBehaviour
 
     private void TickMovement()
     {
-        float designatedYPos = traverseDistanct * gameController.currentLevel;
+        float designatedYPos = traverseDistanct * gameController.level;
 
         if (coroutine_Traverse == null) 
         {

@@ -897,14 +897,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 408322707}
   protectShieldController: {fileID: 815577694}
-  vitalityPoint: 100
+  vitalityPoints: 100
   vitalityText: {fileID: 1338361566}
   vitalityBar: {fileID: 793079078}
   progressText: {fileID: 1455869866}
   progressBar: {fileID: 1829282252}
   levelText: {fileID: 1259050678}
-  currentLevel: 0
-  currentPoint: 0
+  level: 0
+  points: 0
+  maxPoints: 0
   outOfProtectShield: 0
   outBuffer: 0.8
   decrementInterval: 1

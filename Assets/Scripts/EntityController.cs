@@ -55,7 +55,7 @@ public class EntityController : MonoBehaviour
 
     private float GenerateSpawnRate()
     {
-        float rate = TEST_spawnRate + Random.value * (gameController.currentLevel + 1f);
+        float rate = TEST_spawnRate + Random.value * (gameController.level + 1f);
         return rate;
     }
 
@@ -81,13 +81,13 @@ public class EntityController : MonoBehaviour
 
     private Vector3 GenerateEntitySize()
     {
-        Vector3 entitySize = Vector3.one * Random.Range(TEST_sizeRate.x, TEST_sizeRate.y) * (gameController.currentLevel + 1f);
+        Vector3 entitySize = Vector3.one * Random.Range(TEST_sizeRate.x, TEST_sizeRate.y) * (gameController.level + 1f);
         return entitySize;
     }
 
     private float GenerateEntitySpeed()
     {
-        float entitySpeed = TEST_speedRate * (gameController.currentLevel + 1f);
+        float entitySpeed = TEST_speedRate * (gameController.level + 1f);
         return entitySpeed;
     }
 }

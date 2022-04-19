@@ -39,7 +39,7 @@ public class ProtectShieldController : MonoBehaviour
 
     private void Update()
     {
-        if (gameController.currentLevel > 7 && coroutine_InvokeShieldMovement == null)
+        if (gameController.level > 7 && coroutine_InvokeShieldMovement == null)
         {
             coroutine_InvokeShieldMovement = InvokeShieldMovement();
             StartCoroutine(coroutine_InvokeShieldMovement);
@@ -143,7 +143,7 @@ public class ProtectShieldController : MonoBehaviour
     private void GenerateMinMaxRadius()
     {
         float sizeDiff;
-        float index = gameController.currentLevel;
+        float index = gameController.level;
 
         if (index < 7) 
         { 

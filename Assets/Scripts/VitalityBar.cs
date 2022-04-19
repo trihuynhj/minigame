@@ -5,14 +5,14 @@ public class VitalityBar : MonoBehaviour
 {
     public Slider slider;
 
-    public void SetMinMaxPoints(int minPoint, int maxPoint)
+    public void SetMinMaxPoints(float maxPoints)
     {
-        slider.minValue = minPoint;
-        slider.maxValue = maxPoint;
+        slider.minValue = 0f;
+        slider.maxValue = maxPoints;
     }
 
-    public void SetPoint(int point)
+    public void SetPoint(float points)
     {
-        slider.value = point;
+        slider.value = points;
     }
 }

@@ -9,9 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private ProtectShieldController protectShieldController;
 
     // VITALITY BAR -> ON-GOING
-    public int vitalityPoint;
-    private int vitalityMinPoint = 0;
-    private int vitalityMaxPoint = 100;
+    public int vitalityPoints;
+    private int vitalityMaxPoints = 100;
     [SerializeField] private Text vitalityText;
     [SerializeField] private VitalityBar vitalityBar;
 
@@ -22,33 +21,7 @@ public class GameController : MonoBehaviour
     // LEVEL BAR
     [SerializeField] private Text levelText;
 
-    // GAME PROGRESSION (PUBLIC FIELDS)
-    public int currentLevel, currentPoint;
-    private int currentMinPoint, currentMaxPoint;
-    private int maxlevel = 16;
-
-    // LEVEL BRACKETS (TOTAL OF 16 LEVELS EXCLUDING LEVEL ZERO)
-    private int[] levelBrackets = new int[17]
-    {
-        30,     // LVL 0*   [30 points] -> points to pass the current level
-        80,     // LVL 1    [50 points]
-        150,    // LVL 2    [70 points]
-        250,    // LVL 3    [100 points]
-        350,    // LVL 4    [200 points]
-        550,    // LVL 5    [300 points]
-        850,    // LVL 6    [500 points]
-        1350,   // LVL 7    [600 points]
-        1950,   // LVL 8    [800 points]
-        2750,   // LVL 9    [1200 points]
-        3950,   // LVL 10   [1500 points]
-        5450,   // LVL 11   [1500 points]
-        6950,   // LVL 12   [2000 points]
-        8950,   // LVL 13   [2000 points]
-        10950,  // LVL 14   [3000 points]
-        13950,  // LVL 15   [5000 points]
-        18950   // LVL 16
-    };
-
+    // GAME PROGRESSION
     private float[] levels = new float[16]
     {
         30f,    // LVL 1
@@ -68,9 +41,8 @@ public class GameController : MonoBehaviour
         5000f,  // LVL 15
         5000f   // LVL 16
     };
-    [SerializeField] private int level;
-    [SerializeField] private float points, maxPoints;
-
+    [SerializeField] public int level;
+    [SerializeField] public float points, maxPoints;
 
     // PROTECTSHIELD's EFFECT
     [HideInInspector] public bool outOfProtectShield;
@@ -82,11 +54,6 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         level = 0;
-
-        // Set ProgressBar's initial value
-        //progressBar.SetMinMaxPoints(currentMinPoint, currentMaxPoint);
-        //progressBar.SetPoint(currentPoint);
-
         outOfProtectShield = false;
 
         Invoke("CheckShieldRender", .6f);
@@ -94,29 +61,24 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        maxPoints = levels[level];
-        UpdateLevel();
-        if (points <= 0f) { points = 0f; }
-
-        // Limit Level to 16
-        if (currentLevel > maxlevel) { currentLevel = maxlevel; }
-
         // UPDATE GAME STATES
-        UpdateCurrentLevel();
-        UpdateVitalityPointByProtectShield();
+        maxPoints = levels[level];
+        if (points <= 0f) { points = 0f; }
+        UpdateLevel();
+        UpdateVitalityPointsByProtectShield();
 
         // SET VITALITY BAR
-        vitalityBar.SetPoint(vitalityPoint);
-        vitalityBar.SetMinMaxPoints(vitalityMinPoint, vitalityMaxPoint);
+        vitalityBar.SetPoint(vitalityPoints);
+        vitalityBar.SetMinMaxPoints(vitalityMaxPoints);
 
         // SET PROGRESS BAR
         progressBar.SetPoint(points);
         progressBar.SetMinMaxPoints(maxPoints);
 
         // DISPLAY FOR TESTING
-        vitalityText.text = vitalityPoint.ToString();
-        progressText.text = currentPoint.ToString();
-        levelText.text = currentLevel.ToString(); 
+        vitalityText.text = vitalityPoints.ToString();
+        progressText.text = points.ToString();
+        levelText.text = level.ToString(); 
     }
 
     private void UpdateLevel()
@@ -128,30 +90,12 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void UpdateCurrentLevel()
-    {
-        // Edge case (Start of game, currentLevel = 0)
-        if (currentPoint < 30) 
-        {
-            currentLevel = 0;
-            currentMaxPoint = levelBrackets[currentLevel];
-            return;
-        }
-
-        for (int i = 0; i < levelBrackets.Length; i++)
-        {
-            if (currentPoint >= levelBrackets[i] && currentPoint <= levelBrackets[i + 1])
-            {
-                currentLevel = i + 1;
-                currentMinPoint = levelBrackets[currentLevel - 1];
-                currentMaxPoint = levelBrackets[currentLevel];
-            }
-        }
-    }
-
     private void UpdateVitality()
     {
-        // NEED IMPLEMENTATION
+        if (vitalityPoints < 0f)
+        {
+            // IMPLEMENT GAME-OVER
+        }
     }
 
     private void CheckShieldRender()
@@ -159,23 +103,23 @@ public class GameController : MonoBehaviour
         shieldRenderDone = true;
     }
 
-    // Assign Coroutine so that it only runs once in Update()
-    private IEnumerator coroutine_CheckShieldBound = null;
-
     public IEnumerator CheckShieldBound()
     {
         if (outOfProtectShield)
         {
-            // Update vitalityPoint and ProgressBar
-            vitalityPoint--;
+            // Update vitalityPoints, points and ProgressBar
+            vitalityPoints--;
+            points--;
             yield return new WaitForSeconds(decrementInterval);
 
             coroutine_CheckShieldBound = null;
         }
     }
+    // Assign Coroutine so that it only runs once in Update()
+    private IEnumerator coroutine_CheckShieldBound = null;
 
     // Check if Player is out of ProtectShield, if so start the Coroutine to decrement currentPoint
-    private void UpdateVitalityPointByProtectShield()
+    private void UpdateVitalityPointsByProtectShield()
     {
         // Make sure to not update currentPoint before ProtectShield is rendered
         if (!shieldRenderDone) { return; }

@@ -21,8 +21,8 @@ public class Entity : MonoBehaviour
     {
         if (collision.CompareTag("Projectile"))
         {
-            if (isEnemy) { gameController.currentPoint++; }
-            else { gameController.vitalityPoint--; }
+            if (isEnemy) { gameController.points++; }
+            else { gameController.vitalityPoints--; }
 
             Destroy(gameObject);
         }
@@ -30,10 +30,10 @@ public class Entity : MonoBehaviour
         {
             if (isEnemy) 
             {
-                gameController.vitalityPoint--;
-                gameController.currentPoint--;
+                gameController.vitalityPoints--;
+                gameController.points--;
             }
-            else { gameController.currentPoint++; }
+            else { gameController.points++; }
             
             Destroy(gameObject);
         }
