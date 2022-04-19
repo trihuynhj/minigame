@@ -768,7 +768,7 @@ MonoBehaviour:
   projectileContainer: {fileID: 884059162}
   projectilePrefab: {fileID: 6113859537689597167, guid: 944cd6337bd346b4bbb3155541a54af5, type: 3}
   projectileLifetime: 3.5
-  projectileSpeed: 10
+  projectileSpeed: 20
   attackInterval: 5
 --- !u!1 &446341910
 GameObject:
@@ -2987,8 +2987,8 @@ MonoBehaviour:
   entityPrefab: {fileID: 6433950135888429334, guid: 70afcfe0edba0444a883f88e2bdff898, type: 3}
   spawnDistanceFromCenter: 30
   TEST_spawnRate: 1
-  TEST_speedRate: 1
-  TEST_sizeRate: {x: 0.7, y: 1.5}
+  TEST_speedRate: 5
+  TEST_sizeRate: {x: 0.7, y: 1}
 --- !u!1 &1654443042
 GameObject:
   m_ObjectHideFlags: 0

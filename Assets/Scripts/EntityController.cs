@@ -15,19 +15,18 @@ public class EntityController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Y) & coroutine_SpawnEntity == null)
+        if (Input.GetKeyDown(KeyCode.Y) && coroutine_SpawnEntity == null)
         {
             coroutine_SpawnEntity = SpawnEntity();
             StartCoroutine(coroutine_SpawnEntity);
         }
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.U) && coroutine_SpawnEntity != null)
         {
             StopCoroutine(coroutine_SpawnEntity);
             coroutine_SpawnEntity = null;
         }
     }
 
-    private IEnumerator coroutine_SpawnEntity = null;
     private IEnumerator SpawnEntity()
     {
         while (coroutine_SpawnEntity != null)
@@ -52,6 +51,7 @@ public class EntityController : MonoBehaviour
             yield return new WaitForSeconds(GenerateSpawnRate());
         }  
     }
+    private IEnumerator coroutine_SpawnEntity = null;
 
     private float GenerateSpawnRate()
     {
