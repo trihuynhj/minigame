@@ -49,6 +49,29 @@ public class GameController : MonoBehaviour
         18950   // LVL 16
     };
 
+    private float[] levels = new float[16]
+    {
+        30f,    // LVL 1
+        50f,    // LVL 2
+        70f,    // LVL 3
+        100f,   // LVL 4
+        200f,   // LVL 5
+        300f,   // LVL 6
+        500f,   // LVL 7
+        600f,   // LVL 8
+        800f,   // LVL 9
+        1200f,  // LVL 10
+        1500f,  // LVL 11
+        2000f,  // LVL 12
+        2000f,  // LVL 13
+        3000f,  // LVL 14
+        5000f,  // LVL 15
+        5000f   // LVL 16
+    };
+    [SerializeField] private int level;
+    [SerializeField] private float points, maxPoints;
+
+
     // PROTECTSHIELD's EFFECT
     [HideInInspector] public bool outOfProtectShield;
     [SerializeField] private float outBuffer, decrementInterval;
@@ -58,9 +81,11 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        level = 0;
+
         // Set ProgressBar's initial value
-        progressBar.SetMinMaxPoints(currentMinPoint, currentMaxPoint);
-        progressBar.SetPoint(currentPoint);
+        //progressBar.SetMinMaxPoints(currentMinPoint, currentMaxPoint);
+        //progressBar.SetPoint(currentPoint);
 
         outOfProtectShield = false;
 
@@ -69,6 +94,10 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        maxPoints = levels[level];
+        UpdateLevel();
+        if (points <= 0f) { points = 0f; }
+
         // Limit Level to 16
         if (currentLevel > maxlevel) { currentLevel = maxlevel; }
 
@@ -81,8 +110,8 @@ public class GameController : MonoBehaviour
         vitalityBar.SetMinMaxPoints(vitalityMinPoint, vitalityMaxPoint);
 
         // SET PROGRESS BAR
-        progressBar.SetPoint(currentPoint);
-        progressBar.SetMinMaxPoints(currentMinPoint, currentMaxPoint);
+        progressBar.SetPoint(points);
+        progressBar.SetMinMaxPoints(maxPoints);
 
         // DISPLAY FOR TESTING
         vitalityText.text = vitalityPoint.ToString();
@@ -90,9 +119,18 @@ public class GameController : MonoBehaviour
         levelText.text = currentLevel.ToString(); 
     }
 
+    private void UpdateLevel()
+    {
+        if (points >= maxPoints)
+        {
+            points = 0f;
+            level++;
+        }
+    }
+
     private void UpdateCurrentLevel()
     {
-        // Cover edge case (Start of game, currentLevel = 0)
+        // Edge case (Start of game, currentLevel = 0)
         if (currentPoint < 30) 
         {
             currentLevel = 0;
