@@ -47,6 +47,7 @@ public class EntityController : MonoBehaviour
             Entity entityScript = entity.GetComponent<Entity>();
             entityScript.gameController = gameController;
             entityScript.isEnemy = GenerateEntityType();
+            entityScript.attackStrength = (gameController.level + 1f) / 2f;
 
             yield return new WaitForSeconds(GenerateSpawnRate());
         }  
@@ -73,7 +74,7 @@ public class EntityController : MonoBehaviour
     {
         bool isEnemy;
         int num = Random.Range(0, 99);
-        if (num >= 30) { isEnemy = true; }
+        if (num >= 10) { isEnemy = true; }
         else { isEnemy = false; }
 
         return isEnemy;

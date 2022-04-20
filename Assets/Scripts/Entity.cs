@@ -6,15 +6,29 @@ public class Entity : MonoBehaviour
     private SpriteRenderer sprite;
     public bool isEnemy;
 
+    private float entityHealth;
+    public float attackStrength;
+
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        // Set Health to correspond to Size
+        entityHealth = transform.localScale.x + transform.localScale.y;
     }
 
     private void Update()
     {
         if (isEnemy) { sprite.color = Color.black; }
         else { sprite.color = Color.white; }
+
+        if (entityHealth <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +38,7 @@ public class Entity : MonoBehaviour
             if (isEnemy) { gameController.points++; }
             else { gameController.vitalityPoints--; }
 
-            Destroy(gameObject);
+            entityHealth -= attackStrength;
         }
         else if (collision.CompareTag("Core"))
         {
